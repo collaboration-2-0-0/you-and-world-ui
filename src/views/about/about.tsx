@@ -6,7 +6,7 @@ export const About: FC = () => {
   const { root } = useStyles();
 
   return (
-    <FormContainer title="ПРО CAT & DOG">
+    <FormContainer title="ПРО YOU & WORLD">
       <div className={root}>
         <p>Цей інструмент створено для бажаючих допомагати притулку.</p>
         <p>Ви можете отримувати повідомлення про поточний стан справ та потреби.</p>
