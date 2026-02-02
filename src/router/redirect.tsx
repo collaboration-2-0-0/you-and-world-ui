@@ -1,0 +1,64 @@
+import { FC, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { REGEXP_BAD_HASH, REGEXP_END_ON_SLASH } from '@constants/constants';
+import { RoutesMap } from '@constants/router.constants';
+import { MessagesMap } from '@constants/messages';
+import { useNavigateTo } from '@hooks/useNavigateTo';
+import { useMatchParam } from '@utils/utils';
+import { app } from '@app/app.provider';
+import { modalService } from '@services/modal.service';
+
+const { INDEX: netPath } = RoutesMap.NET.NET_ID;
+const showFailed = () => modalService.showError(MessagesMap.NET_COMEOUT_FAIL);
+
+export const Redirect: FC = () => {
+  const isReady = app.useState(['status']).status === 'READY';
+  const navigate = useNavigateTo();
+  const location = useLocation();
+  const isNet = useMatchParam('net_id', netPath, false);
+
+  useEffect(() => {
+    if (!isReady) return;
+    const { pathname: wPathname, hash: wHash } = window.location;
+    const { pathname } = location;
+    if (wPathname === RoutesMap.ROOT) {
+      if (REGEXP_BAD_HASH.test(wHash)) return navigate.toIndex();
+    } else if (REGEXP_END_ON_SLASH.test(pathname)) {
+      return navigate.to(pathname.replace(REGEXP_END_ON_SLASH, ''));
+    }
+
+    // const { user, userNet: net, tg } = app.getState();
+    const { userNet: net } = app.getState();
+    if (!isNet && net) {
+      app.net.comeout().catch(() => {
+        showFailed();
+        navigate.back();
+      });
+    }
+
+    // switch (pathname) {
+    //   case RoutesMap.ROOT:
+    //   case RoutesMap.ACCOUNT.INDEX:
+    //     if (user) break;
+    //     if (tg) navigate.toSignup(true);
+    //     else navigate.toLogin();
+    //     break;
+    //   case RoutesMap.ACCOUNT.LOGIN:
+    //     if (user) navigate.toIndex();
+    //     else if (tg) navigate.toSignup(true);
+    //     break;
+    //   case RoutesMap.ACCOUNT.SIGNUP:
+    //   case RoutesMap.ACCOUNT.OVERMAIL:
+    //     if (user) navigate.toIndex();
+    //     break;
+    //   case RoutesMap.PALETTE:
+    //   case RoutesMap.MAIL:
+    //     if (IS_DEV) break;
+    //     navigate.toIndex();
+    //     break;
+    //   default:
+    // }
+  }, [isNet, location, navigate, isReady]);
+
+  return null;
+};
