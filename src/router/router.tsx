@@ -7,6 +7,7 @@ import { About } from '@views/about/about';
 import { Contacts } from '@views/contacts/contacts';
 import { Help } from '@views/help/help';
 import { useEvents } from '@hooks/useEvents';
+import { AccountRouter } from './routes/account.router';
 import { NetRouter } from './routes/net.router';
 import { NotFound } from '@views/not.found/not.found';
 
@@ -19,7 +20,7 @@ export const Router: FC = () => {
       <Route path={RelativeRoutesMap.ABOUT} element={<About />} />
       <Route path={RelativeRoutesMap.CONTACTS} element={<Contacts />} />
       <Route path={RelativeRoutesMap.HELP} element={<Help />} />
-      {/* {AccountRouter} */}
+      {AccountRouter}
       {NetRouter}
       <Route path="*" element={<NotFound />} />
     </Routes>

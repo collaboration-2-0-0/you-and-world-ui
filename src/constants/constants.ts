@@ -1,5 +1,5 @@
-export const PROJECT_NAME = import.meta.env.VITE_PROJECT_NAME;
-export const ROOT_TITLE = PROJECT_NAME;
+export const APP_NAME = import.meta.env.VITE_APP_NAME;
+export const ROOT_TITLE = APP_NAME;
 export const IS_DEV = import.meta.env.DEV;
 export const API_URL =
   import.meta.env.VITE_API_PROXY === 'true'
