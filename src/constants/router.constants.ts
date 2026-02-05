@@ -11,6 +11,7 @@ export const RelativeRoutesMap = {
   SUBSCRIPTION: 'subscription',
   NET: {
     INDEX: 'net',
+    CREATE: 'create',
     INVITE: 'invite/:token',
     WAIT: {
       INDEX: 'wait',
@@ -18,11 +19,11 @@ export const RelativeRoutesMap = {
     },
     NET_ID: {
       INDEX: ':net_id',
-      // GOAL: 'goal',
-      // RULES: 'rules',
-      // INFO: 'info',
+      GOAL: 'goal',
+      RULES: 'rules',
+      INFO: 'info',
       // BOARD: 'board',
-      // CREATE: 'create',
+      CREATE: 'create',
       LEAVE: 'leave',
       // CHAT: 'chat',
       WAITING: 'waiting',

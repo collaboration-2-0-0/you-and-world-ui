@@ -4,6 +4,8 @@ export const MessagesMap = {
   SERVER_ERROR: 'Сервіс недоступний',
   SUBSCRIPTION_UPDATE_SUCCES: 'Підписку змінено',
   SUBSCRIPTION_REMOVE_SUCCES: 'Підписку скасовано',
+  NET_CREATED: 'Спільноту успішно створено',
+  NET_CREATE_FAIL: 'Не вдалося створити спільноту',
   NET_COMEOUT_FAIL: 'Не вдалося вийти зі спільноти',
   NET_CONNECTED: 'Ви успішно приєднались до спільноти',
   NET_CONNECT_EXISTS: 'Ви вже є учасником цієї спільноти',
@@ -23,4 +25,5 @@ export const MessagesMap = {
   WAIT_CREATED: 'Запит на вхід до спільноти успішно створено',
   WAIT_EXISTS: 'Ви вже створили запит на вхід до цієї спільноти або вже є її учасником',
   WAIT_REMOVED: 'Запит на вхід до спільноти скасовано',
+  SUCCESS: 'Дані збережено',
 };

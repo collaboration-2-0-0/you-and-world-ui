@@ -1,7 +1,12 @@
 import * as T from '@server/types/types';
-import { app } from '@app/app.provider';
 import { IMenuItem } from '@components/menu/menu.types';
+import { RoutesMap } from '@constants/router.constants';
 import { IS_DEV } from '@constants/constants';
+import { app } from '@app/app.provider';
+import { ICONS } from '@components/icon/icons';
+import { makeDynamicPathname } from './format.utils';
+
+const { NET_ID } = RoutesMap.NET;
 
 const createNetMenuFilter = () => {
   const { userStatus, tg } = app.getState();
@@ -56,16 +61,16 @@ export const getMenuItems = (menuItems: IMenuItem[]) => {
 //   return { childEvents, siblingEvents, parentEvents };
 // };
 
-// export const createNetMenuItems = (nets: T.INetsResponse, events: number[], icon?: ICONS) => {
-//   const netMenuItems = nets.map(({ net_id, name }, i): IMenuItem => {
-//     return {
-//       label: name,
-//       href: makeDynamicPathname(NET_ID.INDEX, net_id),
-//       end: false,
-//       icon: icon || 'home',
-//       allowForUser: 'LOGGEDIN',
-//       notification: Boolean(events[i]),
-//     };
-//   });
-//   return getMenuItems(netMenuItems);
-// };
+export const createNetMenuItems = (nets: T.INetsResponse, events: number[], icon?: ICONS) => {
+  const netMenuItems = nets.map(({ net_id, name }, i): IMenuItem => {
+    return {
+      label: name,
+      href: makeDynamicPathname(NET_ID.INDEX, net_id),
+      end: false,
+      icon: icon || 'home',
+      allowForUser: 'LOGGED_IN',
+      notification: Boolean(events[i]),
+    };
+  });
+  return getMenuItems(netMenuItems);
+};
