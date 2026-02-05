@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { USER_STATUS_MAP } from '@server/types/types';
-import { MENU_ITEMS, MENU_NET_ITEMS } from '@constants/menu.constants';
+import { MENU_INSIDE_NET_ITEMS, MENU_ITEMS, MENU_NET_ITEMS } from '@constants/menu.constants';
 import { RoutesMap } from '@constants/router.constants';
 import { ROOT_TITLE } from '@constants/constants';
 // import { getMenuItems, createNetMenuItems, getNetEvents } from '@utils/menu.utils';
@@ -25,8 +25,9 @@ export const useMenuItems = () => {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const mainMenuItems = useMemo(() => getMenuItems(MENU_ITEMS), [user, userStatus]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const insideNetMenuItems = useMemo(() => getMenuItems(MENU_INSIDE_NET_ITEMS), [userStatus]);
 
-  console.log({ userStatus });
   const netMenuItems = useMemo(() => {
     const items = getMenuItems(MENU_NET_ITEMS);
     const { parentNets, siblingNets, childNets } = nets;
@@ -48,6 +49,10 @@ export const useMenuItems = () => {
     [mainMenuItems],
   );
   const openNetMenu = useCallback(() => modalService.openMenu(netMenuItems), [netMenuItems]);
+  const openInsideNetMenu = useCallback(
+    () => modalService.openMenu({ items: insideNetMenuItems }),
+    [insideNetMenuItems],
+  );
   const showBackBtn = href !== pathname; // && pathname !== ACCOUNT.LOGIN;
 
   const showMainMenu = USER_STATUS_MAP[userStatus] < USER_STATUS_MAP.INVITING || undefined;
@@ -60,6 +65,7 @@ export const useMenuItems = () => {
     eventsCount,
     openMainMenu: showMainMenu && openMainMenu,
     openNetMenu: showNetMenu && openNetMenu,
+    openInsideNetMenu: showNetMenu && openInsideNetMenu,
     showBackBtn,
   };
 };

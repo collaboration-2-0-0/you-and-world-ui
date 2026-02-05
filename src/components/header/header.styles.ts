@@ -18,6 +18,9 @@ export const useStyles = createUseStyles(
       height: 'auto',
       padding: 0,
       color: palette.font.light,
+      '& + button': {
+        marginLeft: vars.gap.L,
+      },
     },
     icon: {
       height: '100%',

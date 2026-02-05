@@ -4,11 +4,11 @@ import { Button } from '@components/buttons/button/button';
 import { IconButton } from '@components/buttons/icon.button/icon.button';
 import { MenuButton } from '../menu/menu-button/menu.button';
 import { useStyles } from './header.styles';
-import { ROOT_TITLE } from '@constants/constants';
 
 export const Header: FC = () => {
   const { root, titleButton, button, icon } = useStyles();
-  const { href, openMainMenu, openNetMenu, showBackBtn, eventsCount } = useMenuItems();
+  const { name, href, openMainMenu, openNetMenu, openInsideNetMenu, showBackBtn, eventsCount } =
+    useMenuItems();
 
   return (
     <div className={root}>
@@ -19,15 +19,18 @@ export const Header: FC = () => {
         className={button}
       />
       <Button href={href} btnType="text" className={titleButton}>
-        {ROOT_TITLE}
+        {name}
       </Button>
       {openNetMenu && (
-        <IconButton
-          icon="net"
-          onClick={openNetMenu}
-          className={button}
-          classNameIcon={eventsCount ? icon : undefined}
-        />
+        <>
+          <IconButton icon="menu" onClick={openInsideNetMenu} className={button} />
+          <IconButton
+            icon="net"
+            onClick={openNetMenu}
+            className={button}
+            classNameIcon={eventsCount ? icon : undefined}
+          />
+        </>
       )}
     </div>
   );

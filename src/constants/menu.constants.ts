@@ -34,7 +34,7 @@ export const MENU_ITEMS: IMenuItem[] = [
   //   allowForUser: 'LOGGED_IN',
   // },
   {
-    label: 'Акаунт',
+    label: 'Налаштування',
     href: RoutesMap.ACCOUNT.INDEX,
     icon: 'account',
     allowForUser: 'NOT_CONFIRMED',
@@ -42,12 +42,12 @@ export const MENU_ITEMS: IMenuItem[] = [
 ];
 
 export const MENU_NET_ITEMS: IMenuItem[] = [
-  {
-    label: 'Підписка',
-    href: RoutesMap.SUBSCRIPTION,
-    icon: 'board',
-    allowForUser: ['LOGGED_IN'],
-  },
+  // {
+  //   label: 'Підписка',
+  //   href: RoutesMap.SUBSCRIPTION,
+  //   icon: 'board',
+  //   allowForUser: ['LOGGED_IN'],
+  // },
   // {
   //   label: 'Спільнота',
   //   href: RoutesMap.NET.INDEX,
