@@ -30,7 +30,7 @@ export const About: FC = () => {
         </p>
         <Button
           btnType="primary"
-          href="https://github.com/mykhailo-vaskivnyuk/u-n-w-back/blob/main/README.md"
+          href="https://github.com/collaboration-2-0-0/you-and-world-back/blob/main/README.md"
           className={button}
         >
           Довідка

@@ -64,7 +64,7 @@ export const MENU_NET_ITEMS: IMenuItem[] = [
 
 export const MENU_INSIDE_NET_ITEMS: IMenuItem[] = [
   {
-    label: 'Goal',
+    label: 'Мета',
     href: RoutesMap.NET.NET_ID.GOAL,
     icon: 'goal',
     allowForUser: 'INVITING',
@@ -88,16 +88,10 @@ export const MENU_INSIDE_NET_ITEMS: IMenuItem[] = [
   //   allowForUser: 'INSIDE_NET',
   // },
   {
-    label: 'Створити спільноту',
+    label: 'Створити спільноту в спільноті',
     href: RoutesMap.NET.NET_ID.CREATE,
     icon: 'create',
     allowForUser: 'INSIDE_NET',
-  },
-  {
-    label: 'Покинути назавжди',
-    href: RoutesMap.NET.NET_ID.LEAVE,
-    icon: 'remove',
-    allowForUser: 'INVITING',
   },
   // {
   //   label: 'Чат',
@@ -106,10 +100,16 @@ export const MENU_INSIDE_NET_ITEMS: IMenuItem[] = [
   //   allowForUser: 'INSIDE_NET',
   // },
   {
-    label: 'Запити на вхід до спільноти',
+    label: 'Запити на вхід',
     href: RoutesMap.NET.NET_ID.WAITING,
     icon: 'wait',
     allowForUser: 'INSIDE_NET',
+  },
+  {
+    label: "Від'єднатись",
+    href: RoutesMap.NET.NET_ID.LEAVE,
+    icon: 'remove',
+    allowForUser: 'INVITING',
   },
 ];
 

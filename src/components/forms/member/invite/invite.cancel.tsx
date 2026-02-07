@@ -4,6 +4,7 @@ import { modalService } from '@services/modal.service';
 import { app } from '@app/app.provider';
 import { Button } from '@components/buttons/button/button';
 import { makeTgUrl } from '@utils/format.utils';
+import { handleCopy } from '@utils/utils';
 import { RoutesMap } from '@constants/router.constants';
 import { InputSimple } from '@components/controls/input/input.simple';
 import { useStyles } from './invite.styles';
@@ -21,13 +22,6 @@ const handleCancel = () => {
     .catch(() => {});
 };
 
-const handleCopy = (url: string) => {
-  navigator.clipboard
-    .writeText(url)
-    .then(() => showCopySuccess())
-    .catch(() => showCopyFail());
-};
-
 export const MemberInviteCancelForm: FC = () => {
   const { buttons } = useStyles();
   const { member, bot } = app.getState();
@@ -38,7 +32,10 @@ export const MemberInviteCancelForm: FC = () => {
     <>
       <InputSimple label="Запрошення" defaultValue={inviteUrl} contentEditable={false} />
       <div className={buttons}>
-        <Button btnType="primary" onClick={() => handleCopy(inviteUrl)}>
+        <Button
+          btnType="primary"
+          onClick={() => handleCopy(inviteUrl, showCopySuccess, showCopyFail)}
+        >
           копіювати
         </Button>
         <div />

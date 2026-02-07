@@ -14,3 +14,10 @@ export const useMatchParam = (
 
 export const getMemberPosition = (netView: T.NetViewEnum, memberUiPosition: number) =>
   netView === 'tree' ? memberUiPosition - 1 : memberUiPosition && memberUiPosition - 1;
+
+export const handleCopy = (url: string, onSuccess: () => void, onError: () => void) => {
+  navigator.clipboard
+    .writeText(url)
+    .then(() => onSuccess())
+    .catch(() => onError());
+};

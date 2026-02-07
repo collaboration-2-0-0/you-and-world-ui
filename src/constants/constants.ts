@@ -1,5 +1,5 @@
 export const APP_NAME = import.meta.env.VITE_APP_NAME;
-export const ROOT_TITLE = 'МІЙ АККАУНТ'; // APP_NAME;
+export const ROOT_TITLE = 'МІЙ АКАУНТ';
 export const IS_DEV = import.meta.env.DEV;
 export const API_URL =
   import.meta.env.VITE_API_PROXY === 'true'
