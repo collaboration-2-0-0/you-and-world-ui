@@ -7,7 +7,7 @@ export const About: FC = () => {
   const { root, button } = useStyles();
 
   return (
-    <FormContainer title="ПРО YOU & WORLD">
+    <FormContainer title="ПРО ДОДАТОК">
       <div className={root}>
         <p>
           Даний інструмент допомагає людині реалізувати своє творче бажання та досягти поставлену

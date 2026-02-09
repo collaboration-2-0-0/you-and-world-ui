@@ -1,18 +1,17 @@
 import { RoutesMap } from '@constants/router.constants';
 import { IMenuItem } from '@components/menu/menu.types';
-import { APP_NAME } from './constants';
 
 export const MENU_ITEMS: IMenuItem[] = [
-  {
-    label: `Про ${APP_NAME}`,
-    href: RoutesMap.ABOUT,
-    icon: 'about',
-    allowForUser: 'NOT_LOGGED_IN',
-  },
+  // {
+  //   label: `Про ${APP_NAME}`,
+  //   href: RoutesMap.ABOUT,
+  //   icon: 'about',
+  //   allowForUser: 'NOT_LOGGED_IN',
+  // },
   {
     label: `Довідка`,
-    href: RoutesMap.HELP,
-    icon: 'create',
+    href: RoutesMap.ABOUT,
+    icon: 'about',
     allowForUser: 'NOT_LOGGED_IN',
   },
   {
@@ -54,6 +53,12 @@ export const MENU_NET_ITEMS: IMenuItem[] = [
   //   icon: 'net',
   //   allowForUser: ['LOGGED_IN'],
   // },
+  {
+    label: 'Запити на вхід',
+    href: RoutesMap.ACCOUNT.WAIT,
+    icon: 'wait',
+    allowForUser: ['LOGGED_IN'],
+  },
   {
     label: 'Створити спільноту',
     href: RoutesMap.NET.CREATE,

@@ -26,7 +26,7 @@ export const useMenuItems = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const mainMenuItems = useMemo(() => getMenuItems(MENU_ITEMS), [user, userStatus]);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const insideNetMenuItems = useMemo(() => getMenuItems(MENU_INSIDE_NET_ITEMS), [userStatus]);
+  const insideNetMenuItems = useMemo(() => getMenuItems(MENU_INSIDE_NET_ITEMS), [net, userStatus]);
 
   const netMenuItems = useMemo(() => {
     const items = getMenuItems(MENU_NET_ITEMS);

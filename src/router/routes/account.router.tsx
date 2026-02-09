@@ -1,10 +1,12 @@
 import { Route } from 'react-router-dom';
 import { RelativeRoutesMap } from '@constants/router.constants';
 import { Account } from '@views/account/account/account';
+import { WaitNets } from '@views/net/wait/wait';
 
 export const AccountRouter = (
   <Route path={RelativeRoutesMap.ACCOUNT.INDEX}>
     <Route path="" element={<Account />} />
+    <Route path={RelativeRoutesMap.ACCOUNT.WAIT} element={<WaitNets />} />
   </Route>
 );
 
