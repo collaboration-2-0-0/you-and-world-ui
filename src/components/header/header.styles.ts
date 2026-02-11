@@ -9,6 +9,7 @@ export const useStyles = createUseStyles(
       color: palette.font.light,
       background: palette.bg.first,
       padding: vars.gap.main,
+      paddingRight: 20,
     },
     titleButton: {
       flex: '1 0 0',
@@ -19,7 +20,7 @@ export const useStyles = createUseStyles(
       padding: 0,
       color: palette.font.light,
       '& + button': {
-        marginLeft: vars.gap.L,
+        marginLeft: 20, // vars.gap.L,
       },
     },
     icon: {

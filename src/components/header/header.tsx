@@ -6,9 +6,8 @@ import { MenuButton } from '../menu/menu-button/menu.button';
 import { useStyles } from './header.styles';
 
 export const Header: FC = () => {
-  const { root, titleButton, button, icon } = useStyles();
-  const { name, href, openMainMenu, openNetMenu, openInsideNetMenu, showBackBtn, eventsCount } =
-    useMenuItems();
+  const { root, titleButton, button } = useStyles();
+  const { name, href, openMainMenu, openNetMenu, openInsideNetMenu, showBackBtn } = useMenuItems();
 
   return (
     <div className={root}>
@@ -28,7 +27,7 @@ export const Header: FC = () => {
             icon="net"
             onClick={openNetMenu}
             className={button}
-            classNameIcon={eventsCount ? icon : undefined}
+            // classNameIcon={eventsCount ? icon : undefined}
           />
         </>
       )}
