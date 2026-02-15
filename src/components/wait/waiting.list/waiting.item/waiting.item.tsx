@@ -19,7 +19,7 @@ export const WaitingItem: FC<WaitingItemProps> = (props) => {
     <li className={root}>
       <div className={cls.name}>
         <span>{name}</span>
-        <IconButton icon="telegram" href={makeTgUserUrl(username)} />
+        {username && <IconButton icon="telegram" href={makeTgUserUrl(username)} />}
       </div>
 
       <span className={cls.comment}>{comment}</span>
