@@ -37,6 +37,7 @@ export default defineConfig(({ mode }) => {
           ws: true,
         },
       },
+      allowedHosts: true,
     },
   };
 });

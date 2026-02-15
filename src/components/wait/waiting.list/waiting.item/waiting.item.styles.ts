@@ -6,24 +6,41 @@ export const useStyles = createUseStyles(
       display: 'flex',
       flexDirection: 'column',
       marginBottom: vars.gap.S,
-      borderLeft: '2px solid',
-      borderColor: palette.first.main,
-      paddingLeft: vars.gap.SS,
-      paddingRight: vars.gap.SS,
+      padding: vars.gap.S,
+      background: 'rgb(0,0, 0, 0.03)',
+      borderRadius: vars.radius.main,
       '& span': {
         userSelect: 'text',
-      },
-      '&>span:first-child': {
-        color: palette.add.main,
-      },
-      '&>span:last-child': {
-        color: palette.second.main,
-        userSelect: 'text',
-        fontSize: vars.fontSize.M,
       },
       '& button': {
         fontSize: vars.fontSize.M,
       },
+    },
+    name: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      gap: vars.gap.M,
+      width: '100%',
+      '& span': {
+        fontSize: vars.fontSize.M,
+        color: palette.add.main,
+      },
+      '& a': {
+        color: palette.light.main,
+        background: palette.first.medium,
+        borderRadius: 100,
+        width: 24,
+        height: 24,
+        '& i': {
+          widht: 18,
+          height: 18,
+        },
+      },
+    },
+    comment: {
+      color: palette.first.main,
+      fontSize: vars.fontSize.M,
     },
   }),
   { name: 'WaitingItem' },

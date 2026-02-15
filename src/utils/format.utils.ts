@@ -18,6 +18,10 @@ export const makeTgUrl = (pathToToken: string, token: string, bot: string) => {
   return `tg://resolve?domain=${bot}&start=path${hash}`;
 };
 
+export const makeTgUserUrl = (username?: string | null) => {
+  return username ? `https://t.me/${username}` : '#';
+};
+
 export const makeInnerHtmlWithLinks = (text: string) => {
   const regExp = /(\b|\s)([^<>\s]+:\/\/[^<>\s]+)(\b|\s)/g;
   const tpl = "$1<a href='$2' target='_blank' rel='noopener noreferrer'>$2</a>$3";

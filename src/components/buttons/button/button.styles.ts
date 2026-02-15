@@ -8,9 +8,12 @@ export const useStyles = createUseStyles(
       background: palette.bg.add,
       color: palette.font.light,
       padding: vars.gap.SS,
-      borderRadius: vars.radius.SS,
+      borderRadius: vars.radius.S,
       textTransform: 'uppercase',
       cursor: 'pointer',
+      '&:not(.text)': {
+        boxShadow: '6px 6px 6px 0px rgba(0, 0, 0, 0.2)',
+      },
       '&:link, &:visited': {
         color: palette.font.light,
       },
