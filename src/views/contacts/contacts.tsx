@@ -8,7 +8,9 @@ export const Contacts: FC = () => {
   return (
     <FormContainer title="КОНТАКТИ">
       <div className={root}>
-        <p>{`Контакти для зв'язку`}</p>
+        <a href="mailto://m.vaskivnyuk@gmail.com">
+          Електронна пошта: <span>m.vaskivnyuk@gmail.com</span>
+        </a>
       </div>
     </FormContainer>
   );
