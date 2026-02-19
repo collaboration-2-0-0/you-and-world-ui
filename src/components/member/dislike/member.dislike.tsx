@@ -1,6 +1,6 @@
 import { FC, useCallback, MouseEvent } from 'react';
 import clsx from 'clsx';
-import { MemberStatusKeys } from '@server/constants';
+import { MemberStatusKeys } from '@common/constants';
 import { app } from '@app/app.provider';
 import { useStyles } from './member.dislike.styles';
 

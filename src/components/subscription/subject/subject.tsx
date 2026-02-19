@@ -4,7 +4,7 @@ import {
   ISubscription,
   SubscriptionSubjectKeys,
   SubscriptionTypeKeys,
-} from '@server/types/subscription.types';
+} from '@common/types/subscription.types';
 import { FC } from 'react';
 
 interface SubjectProps {

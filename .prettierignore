@@ -1,4 +1,3 @@
 dist
-src/app/local
-src/app/common/types.ts
-src/app/common/server
+src/client/local
+src/client/app/types

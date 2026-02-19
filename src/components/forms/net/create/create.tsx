@@ -1,6 +1,6 @@
 import { FC, FormEvent } from 'react';
 import { Formik, useFormikContext } from 'formik';
-import { MAX_NET_LEVEL } from '@server/constants';
+import { MAX_NET_LEVEL } from '@common/constants';
 import { MessagesMap } from '@constants/messages';
 import { useNavigateTo } from '@hooks/useNavigateTo';
 import { modalService } from '@services/modal.service';

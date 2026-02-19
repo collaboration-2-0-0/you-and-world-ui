@@ -12,8 +12,8 @@ export default defineConfig(({ mode }) => {
       alias: {
         '@lib': '/lib',
         '@app': '/src/components/app',
-        '@client': '/src/app/common/client',
-        '@server': '/src/app/common/server',
+        '@client': '/src/client/app/client',
+        '@common': '/src/client/app',
         '@components': '/src/components',
         '@contexts': '/src/contexts',
         '@constants': '/src/constants',

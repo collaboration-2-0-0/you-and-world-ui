@@ -1,4 +1,4 @@
-import { NetViewEnum } from '@server/types/types';
+import { NetViewEnum } from '@common/types/types';
 
 export interface MemberCardProps {
   netView: NetViewEnum;

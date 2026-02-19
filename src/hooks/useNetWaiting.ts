@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { INetWaiting } from '@server/types/net.types';
+import { INetWaiting } from '@common/types/net.types';
 import { app } from '@app/app.provider';
 
 export const useNetWaiting = () => {

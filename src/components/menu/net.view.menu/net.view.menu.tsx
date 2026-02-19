@@ -1,6 +1,6 @@
 import { FC, useCallback, useMemo } from 'react';
 import clsx from 'clsx';
-import { NetViewEnum } from '@server/types/net.types';
+import { NetViewEnum } from '@common/types/net.types';
 import { MENU_CIRCLE_ITEMS, MENU_TREE_ITEMS } from '@constants/menu.constants';
 import { NET_VIEW_NAME } from '@constants/dictionary';
 

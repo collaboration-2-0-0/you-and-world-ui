@@ -1,4 +1,4 @@
-import { MemberStatusKeys } from '@server/constants';
+import { MemberStatusKeys } from '@common/constants';
 
 export const CHAT_NAME = {
   net: 'Чат спільноти',

@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from 'react';
-import { App } from '../../app/common/client/app';
+import { App } from '../../client/app/client/app';
 import { AppContextProvider } from './app.context';
 
 export const app = new App();
