@@ -7,7 +7,7 @@ import tseslint from 'typescript-eslint';
 import prettier from 'eslint-plugin-prettier';
 
 export default tseslint.config(
-  { ignores: ['dist', 'src/client/local', 'src/client/app/*.*', 'src/client/app/types'] },
+  { ignores: ['dist', 'src/shared/local', 'src/shared/server'] },
   {
     settings: { react: { version: '18.3' } },
     extends: [js.configs.recommended, ...tseslint.configs.recommendedTypeChecked],

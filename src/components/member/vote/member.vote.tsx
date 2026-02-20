@@ -1,7 +1,7 @@
 import { FC, useCallback, MouseEvent } from 'react';
 import clsx from 'clsx';
 import { NetViewEnum } from '@common/types/types';
-import { MemberStatusKeys } from '@common/constants';
+import { MemberStatusKeys } from '@common/types/types';
 import { app } from '@app/app.provider';
 import { useStyles } from './member.vote.styles';
 

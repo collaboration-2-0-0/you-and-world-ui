@@ -28,8 +28,8 @@
     "paths": {
       "@lib/*": ["lib/*"],
       "@app/*": ["src/components/app/*"],
-      "@client/*": ["src/client/app/client/*"],
-      "@common/*": ["src/client/app/*"],
+      "@client/*": ["src/shared/client/*"],
+      "@common/*": ["src/shared/server/*"],
       "@components/*": ["src/components/*"],
       "@constants/*": ["src/constants/*"],
       "@contexts/*": ["src/contexts/*"],

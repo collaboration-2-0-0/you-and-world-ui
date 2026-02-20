@@ -1,4 +1,4 @@
-import { MemberStatusKeys } from '@common/constants';
+import { MemberStatusKeys } from '@common/types/types';
 
 export const CHAT_NAME = {
   net: 'Чат спільноти',

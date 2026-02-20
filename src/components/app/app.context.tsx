@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { App } from '../../client/app/client/app';
+import { App } from '../../shared/client/app';
 
 const appContext = createContext({});
 export const AppContextProvider = appContext.Provider;
