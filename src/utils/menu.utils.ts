@@ -1,4 +1,4 @@
-import * as T from '@common/types/types';
+import * as T from '@common/types';
 import { IMenuItem } from '@components/menu/menu.types';
 import { RoutesMap } from '@constants/router.constants';
 import { IS_DEV } from '@constants/constants';

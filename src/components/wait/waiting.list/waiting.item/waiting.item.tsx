@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { INetWaiting } from '@common/types/net.types';
+import { INetWaiting } from '@common/types';
 import { makeTgUserUrl } from '@utils/format.utils';
 import { Button } from '@components/buttons/button/button';
 import { IconButton } from '@components/buttons/icon.button/icon.button';

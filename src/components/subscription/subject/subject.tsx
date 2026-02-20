@@ -1,10 +1,6 @@
 import { useStyles } from './subject.styles';
 import { Option } from '@components/controls/option/option';
-import {
-  ISubscription,
-  SubscriptionSubjectKeys,
-  SubscriptionTypeKeys,
-} from '@common/types/subscription.types';
+import { ISubscription, SubscriptionSubjectKeys, SubscriptionTypeKeys } from '@common/types';
 import { FC } from 'react';
 
 interface SubjectProps {

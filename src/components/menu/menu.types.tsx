@@ -1,4 +1,4 @@
-import { UserStatusKey } from '@common/types/types';
+import { UserStatusKey } from '@common/types';
 import { ICONS } from '@components/icon/icons';
 
 export interface IMenuItem {

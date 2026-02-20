@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
-import { USER_STATUS_MAP } from '@common/types/types';
+import { USER_STATUS_MAP } from '@common/types';
 import { MENU_INSIDE_NET_ITEMS, MENU_ITEMS, MENU_NET_ITEMS } from '@constants/menu.constants';
 import { RoutesMap } from '@constants/router.constants';
 import { ROOT_TITLE } from '@constants/constants';

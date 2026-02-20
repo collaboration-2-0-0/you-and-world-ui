@@ -1,5 +1,5 @@
 import { useMatch } from 'react-router-dom';
-import * as T from '@common/types/types';
+import * as T from '@common/types';
 
 export const useMatchParam = (
   paramName: string,

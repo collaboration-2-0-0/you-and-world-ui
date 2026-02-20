@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import * as P from './types/types';
+import * as P from './types';
 
 export type IClientApi = ReturnType<typeof getApi>;
 

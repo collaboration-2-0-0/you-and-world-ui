@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { IconButton } from '@components/buttons/icon.button/icon.button';
-import { IWaitNets } from '@common/types/net.types';
-import { OmitNull } from '@common/types/common.types';
+import { IWaitNets, OmitNull } from '@common/types';
 import { useStyles } from './wait.item.styles';
 
 interface WaitItemProps extends OmitNull<IWaitNets[number]> {
