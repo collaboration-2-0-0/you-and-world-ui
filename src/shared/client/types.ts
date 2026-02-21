@@ -1,5 +1,4 @@
-import * as T from '../server/types/types';
-import { MemberStatusKeys } from '../server/types/types';
+import * as T from '@common/types';
 
 export interface INets {
   parentNets: T.INetsResponse;
@@ -21,5 +20,5 @@ export const INITIAL_NETS = {
 
 export type IMember = Omit<T.IMemberResponse, 'member_name'> & {
   member_name: string;
-  memberStatus: MemberStatusKeys;
+  memberStatus: T.MemberStatusKeys;
 };

@@ -1,5 +1,5 @@
 import { Store } from '../lib/store/store';
-import * as T from '../../server/types/types';
+import * as T from '@common/types';
 import { INets, INITIAL_NETS } from '../types';
 import { App } from '../app';
 

@@ -1,4 +1,4 @@
-import * as T from '../../server/types/types';
+import * as T from '@common/types';
 import { IMember } from '../types';
 import { Store } from '../lib/store/store';
 import { App } from '../app';

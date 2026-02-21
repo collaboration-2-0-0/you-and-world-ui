@@ -1,4 +1,4 @@
-import * as T from '../../server/types/types';
+import * as T from '@common/types';
 import { INetEvents } from '../types';
 import { Store } from '@client/lib/store/store';
 
