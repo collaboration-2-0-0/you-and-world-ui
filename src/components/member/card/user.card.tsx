@@ -1,5 +1,5 @@
 import { FC, useCallback, MouseEvent } from 'react';
-import { NetViewEnum } from '@common/types';
+import { NetViewEnum } from '@shared/types/api';
 import { useNavigateTo } from '@hooks/useNavigateTo';
 import { app } from '@app/app.provider';
 import { Icon } from '@components/icon/icon';

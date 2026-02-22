@@ -1,4 +1,4 @@
-import * as T from '@common/types';
+import * as T from '@shared/types/api';
 
 export interface INets {
   parentNets: T.INetsResponse;

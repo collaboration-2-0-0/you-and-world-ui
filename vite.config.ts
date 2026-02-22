@@ -12,8 +12,9 @@ export default defineConfig(({ mode }) => {
       alias: {
         '@lib': '/lib',
         '@app': '/src/components/app',
+
+        '@shared': '/src/shared',
         '@client': '/src/shared/client',
-        '@common': '/src/shared/server',
         '@components': '/src/components',
         '@contexts': '/src/contexts',
         '@constants': '/src/constants',

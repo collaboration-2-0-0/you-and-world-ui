@@ -1,4 +1,4 @@
-import { MEMBER_STATUS } from '@common/types';
+import { MEMBER_STATUS } from '@shared/types/api';
 import { createEnumFromArray } from '../server/transform.utils';
 
 export enum AppStatus {

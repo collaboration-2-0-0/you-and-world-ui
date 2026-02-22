@@ -1,5 +1,5 @@
 import { EventEmitter } from '../lib/event-emitter/event.emitter';
-import { TPromiseExecutor } from '@common/types';
+import { TPromiseExecutor } from '@shared/types/api';
 import { IWsResponse, TFetch } from './types';
 import {
   CONNECTION_ATTEMPT_COUNT,

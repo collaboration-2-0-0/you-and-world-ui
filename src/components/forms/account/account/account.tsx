@@ -1,6 +1,6 @@
 import { FC, FormEvent } from 'react';
 import { Formik, useFormikContext } from 'formik';
-import { IUserResponse, OmitNull } from '@common/types';
+import { IUserResponse, OmitNull } from '@shared/types/api';
 import { MessagesMap } from '@constants/messages';
 // import { useNavigateTo } from '@hooks/useNavigateTo';
 import { modalService } from '@services/modal.service';

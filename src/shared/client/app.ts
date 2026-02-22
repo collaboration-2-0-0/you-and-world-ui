@@ -1,4 +1,4 @@
-import * as T from '@common/types';
+import * as T from '@shared/types/api';
 import { Store } from './lib/store/store';
 import { Account } from './services/account.service';
 import { Subscription } from './services/subscription.service';

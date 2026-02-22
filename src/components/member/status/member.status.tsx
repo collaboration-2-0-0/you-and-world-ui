@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import clsx from 'clsx';
-import { MemberStatusKeys } from '@common/types';
+import { MemberStatusKeys } from '@shared/types/api';
 import { MEMBER_STATUS_TEXT } from '@constants/dictionary';
 import { useStyles } from './member.status.styles';
 

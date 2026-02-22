@@ -8,7 +8,7 @@ import { useMatchParam } from '@utils/utils';
 import { app } from '@app/app.provider';
 import { Input } from '@components/controls/input/input';
 import { Button } from '@components/buttons/button/button';
-import { IWaitCreateParams } from '@common/types';
+import { IWaitCreateParams } from '@shared/types/api';
 import { WaitCreateField, WaitCreateFormValues, WaitCreateSchema } from './wait.create.schema';
 import { useStyles } from './wait.create.styles';
 

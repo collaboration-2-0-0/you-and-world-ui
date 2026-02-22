@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { IUpdateSubscription } from '@common/types';
+import { IUpdateSubscription } from '@shared/types/api';
 import { MessagesMap } from '@constants/messages';
 import { modalService } from '@services/modal.service';
 import { OptionProps } from '@components/controls/option/option';

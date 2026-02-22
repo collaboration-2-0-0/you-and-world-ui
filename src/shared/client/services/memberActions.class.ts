@@ -1,4 +1,4 @@
-import * as T from '@common/types';
+import * as T from '@shared/types/api';
 import { Store } from '../lib/store/store';
 import { App } from '../app';
 import { Net } from './net.service';

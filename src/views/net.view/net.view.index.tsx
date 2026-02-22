@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
-import { NetViewEnum } from '@common/types';
+import { NetViewEnum } from '@shared/types/api';
 import { useNetView } from '@hooks/useNetView';
 import { useTree } from '@hooks/useTree';
 import { useCircle } from '@hooks/useCircle';

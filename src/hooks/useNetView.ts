@@ -1,4 +1,4 @@
-import { NetViewEnum } from '@common/types';
+import { NetViewEnum } from '@shared/types/api';
 import { app } from '@app/app.provider';
 
 export const useNetView = (netView: NetViewEnum) => {

@@ -1,4 +1,4 @@
-import * as T from '@common/types';
+import * as T from '@shared/types/api';
 import { IMember } from '../types';
 import { HttpResponseError } from '../connection/errors';
 import { getMemberStatus } from '../../server/utils';

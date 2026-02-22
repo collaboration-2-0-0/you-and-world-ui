@@ -1,6 +1,6 @@
 import { FC, useCallback, MouseEvent } from 'react';
 import clsx from 'clsx';
-import { MemberStatusKeys } from '@common/types';
+import { MemberStatusKeys } from '@shared/types/api';
 import { app } from '@app/app.provider';
 import { useStyles } from './member.dislike.styles';
 
