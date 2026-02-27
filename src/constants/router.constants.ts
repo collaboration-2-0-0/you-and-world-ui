@@ -8,7 +8,7 @@ export const RelativeRoutesMap = {
     INDEX: 'account',
     WAIT: 'wait',
   },
-  SUBSCRIPTION: 'subscription',
+  // SUBSCRIPTION: 'subscription',
   NET: {
     INDEX: 'net',
     CREATE: 'create',
@@ -27,6 +27,7 @@ export const RelativeRoutesMap = {
       LEAVE: 'leave',
       // CHAT: 'chat',
       WAITING: 'waiting',
+      SUBSCRIPTION: 'subscription',
       CIRCLE: {
         INDEX: 'circle',
         INFO: 'info',

@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { IUpdateSubscription } from '@shared/types/api';
+import { ISubscription } from '@shared/types/api';
 import { MessagesMap } from '@constants/messages';
 import { modalService } from '@services/modal.service';
 import { OptionProps } from '@components/controls/option/option';
@@ -11,14 +11,14 @@ const showRemoveSuccess = () => modalService.showMessage(MessagesMap.SUBSCRIPTIO
 export const useSubscription = () => {
   const { subscriptions } = app.subscription.useState(['subscriptions']);
 
-  const remove = useCallback((subscription?: IUpdateSubscription) => {
+  const remove = useCallback((subscription?: ISubscription) => {
     app.subscription
       .remove(subscription)
       .then(showRemoveSuccess)
       .catch(() => {});
   }, []);
 
-  const update: OptionProps<IUpdateSubscription>['onChange'] = useCallback(
+  const update: OptionProps<ISubscription>['onChange'] = useCallback(
     (v, checked) => {
       if (checked) {
         app.subscription

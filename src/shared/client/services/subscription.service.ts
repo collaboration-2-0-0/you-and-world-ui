@@ -32,7 +32,9 @@ export class Subscription extends Store<SubscriptionServiceState> {
   }
 
   async read() {
-    const result = await this.app.api.subscription.get();
+    const { node_id } = this.app.net.state.userNet || {};
+    if (!node_id) return;
+    const result = await this.app.api.subscription.get({ node_id });
     const subscriptions = result.reduce((s, it) => {
       s[it.subject][it.type] = true;
       return s;
@@ -40,13 +42,17 @@ export class Subscription extends Store<SubscriptionServiceState> {
     this.setState({ subscriptions });
   }
 
-  async update(subscription: T.IUpdateSubscription) {
-    await this.app.api.subscription.update(subscription);
+  async update(subscription: T.ISubscription) {
+    const { node_id } = this.app.net.state.userNet || {};
+    if (!node_id) return;
+    await this.app.api.subscription.update({ ...subscription, node_id });
     await this.read();
   }
 
-  async remove(subscription?: T.IUpdateSubscription) {
-    await this.app.api.subscription.remove(subscription || { subject: null });
+  async remove(subscription?: T.ISubscription) {
+    const { node_id } = this.app.net.state.userNet || {};
+    if (!node_id) return;
+    await this.app.api.subscription.remove({ ...subscription, node_id });
     await this.read();
   }
 }

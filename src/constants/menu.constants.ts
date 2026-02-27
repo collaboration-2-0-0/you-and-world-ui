@@ -86,6 +86,12 @@ export const MENU_INSIDE_NET_ITEMS: IMenuItem[] = [
     icon: 'about',
     allowForUser: 'INSIDE_NET',
   },
+  {
+    label: 'Підписка на повідомлення',
+    href: RoutesMap.NET.NET_ID.SUBSCRIPTION,
+    icon: 'board',
+    allowForUser: 'INSIDE_NET',
+  },
   // {
   //   label: 'Board',
   //   href: RoutesMap.NET.NET_ID.BOARD,

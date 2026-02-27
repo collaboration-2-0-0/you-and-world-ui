@@ -9,6 +9,9 @@ export const useStyles = createUseStyles(
       paddingBottom: vars.gap.L,
       color: palette.add.main,
       fontSize: vars.fontSize.M - 4,
+      '& a': {
+        color: palette.first.main,
+      },
       '& p': {
         marginTop: vars.gap.L,
         width: '100%',

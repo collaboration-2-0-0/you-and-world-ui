@@ -11,11 +11,11 @@ interface SubjectProps {
 
 const SUBJECTS: Record<SubscriptionSubjectKeys, string> = {
   REPORT: 'Звіти за період та поточні потреби',
-  URGENT: 'Термінові новини та оголошення',
+  URGENT: 'Новини та оголошення',
 };
 
 const TYPES: Record<SubscriptionTypeKeys, string> = {
-  ON_UPDATE: 'Відразу',
+  ON_UPDATE: 'Підписка активна',
   ONE_WEEK: 'Щотижня',
   TWO_WEEK: 'Раз на два тижні',
   ONE_MONTH: 'Щомісяця',

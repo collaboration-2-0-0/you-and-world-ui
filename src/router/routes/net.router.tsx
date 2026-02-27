@@ -12,6 +12,7 @@ import { NetRules } from '@views/net/rules/rules';
 import { NetInfo } from '@views/net/info/info';
 import { NetLeave } from '@views/net/leave/leave';
 import { NetWaiting } from '@views/net/waiting/waiting';
+import { SubscriptionView } from '@views/subscription/subscription';
 import { TreeRouter } from './tree.router';
 import { CircleRouter } from './circle.router';
 
@@ -35,6 +36,7 @@ export const NetRouter = (
       <Route path={NET_ID.CREATE} element={<NetCreate />} />
       <Route path={NET_ID.LEAVE} element={<NetLeave />} />
       <Route path={NET_ID.WAITING} element={<NetWaiting />} />
+      <Route path={NET_ID.SUBSCRIPTION} element={<SubscriptionView />} />
       {TreeRouter}
       {CircleRouter}
     </Route>

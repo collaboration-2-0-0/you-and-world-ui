@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { RelativeRoutesMap } from '@constants/router.constants';
 import { Main } from '@views/main/main';
-import { SubscriptionView } from '@views/subscription/subscription';
+// import { SubscriptionView } from '@views/subscription/subscription';
 import { About } from '@views/about/about';
 import { Contacts } from '@views/contacts/contacts';
 import { useEvents } from '@hooks/useEvents';
@@ -15,7 +15,7 @@ export const Router: FC = () => {
   return (
     <Routes>
       <Route path={RelativeRoutesMap.ROOT} element={<Main />} />
-      <Route path={RelativeRoutesMap.SUBSCRIPTION} element={<SubscriptionView />} />
+      {/* <Route path={RelativeRoutesMap.SUBSCRIPTION} element={<SubscriptionView />} /> */}
       <Route path={RelativeRoutesMap.ABOUT} element={<About />} />
       <Route path={RelativeRoutesMap.CONTACTS} element={<Contacts />} />
       {AccountRouter}
