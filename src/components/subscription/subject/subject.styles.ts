@@ -13,6 +13,12 @@ export const useStyles = createUseStyles(
       color: palette.add.main,
       fontSize: vars.fontSize.L,
     },
+    option: {
+      '& label': {
+        color: palette.add.main,
+        fontSize: vars.fontSize.L,
+      },
+    },
   }),
   { name: 'Subject' },
 );

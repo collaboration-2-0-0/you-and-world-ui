@@ -1,12 +1,12 @@
 import * as T from '@shared/types/api';
 import { Store } from '../lib/store/store';
 import { App } from '../app';
-import { Net } from './net.service';
+import { NetService } from './net.service';
 
 export class MemberActions extends Store {
   constructor(
     private app: App,
-    private net: Net,
+    private net: NetService,
   ) {
     super({});
   }

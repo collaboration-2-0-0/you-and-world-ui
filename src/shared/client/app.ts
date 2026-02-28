@@ -1,9 +1,8 @@
 import * as T from '@shared/types/api';
 import { Store } from './lib/store/store';
 import { Account } from './services/account.service';
-import { Subscription } from './services/subscription.service';
 import { Api } from './services/api.service';
-import { Net } from './services/net.service';
+import { NetService } from './services/net.service';
 import { UserNets } from './services/user.nets.class';
 import { EventService } from './services/events.class';
 
@@ -20,8 +19,7 @@ export class App extends Store<AppState> {
     this.handleConnect().catch(() => null);
   }, this.setMessage.bind(this));
   account: Account = new Account(this);
-  subscription: Subscription = new Subscription(this);
-  net: Net = new Net(this);
+  net: NetService = new NetService(this);
   userNets: UserNets = new UserNets(this);
   userEvents: EventService = new EventService(this);
 
@@ -64,7 +62,6 @@ export class App extends Store<AppState> {
   }
 
   private setInitialValues() {
-    this.subscription.reset();
     this.userNets.clear();
     this.userEvents.reset();
   }
@@ -90,7 +87,6 @@ export class App extends Store<AppState> {
       const { user } = this.account.state;
       if (!user) this.setInitialValues();
       else if (user.user_status === 'LOGGED_IN') {
-        await this.subscription.read();
         await this.userNets.getAllNets();
         await this.userNets.getWaitNets();
         await this.api.chat.connect.user();

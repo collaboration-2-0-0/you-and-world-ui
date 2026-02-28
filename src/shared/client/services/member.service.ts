@@ -2,13 +2,13 @@ import * as T from '@shared/types/api';
 import { IMember } from '../types';
 import { Store } from '../lib/store/store';
 import { App } from '../app';
-import { Net } from './net.service';
+import { NetService } from './net.service';
 
 export class Member extends Store {
   constructor(
     private member: IMember,
     private app: App,
-    private net: Net,
+    private net: NetService,
   ) {
     super({});
   }
@@ -46,21 +46,21 @@ export class Member extends Store {
     }
   }
 
-  async inviteConfirm() {
-    try {
-      const { userNet: net } = this.app.getState();
-      const success = await this.app.api.member.invite.confirm({
-        member_id: this.member.node_id,
-        ...net!,
-      });
-      if (success) await this.net.onMemberChanged();
-      await this.net.onNetChanged();
-      return success;
-    } catch (e: any) {
-      this.setError(e);
-      throw e;
-    }
-  }
+  // async inviteConfirm() {
+  //   try {
+  //     const { userNet: net } = this.app.getState();
+  //     const success = await this.app.api.member.invite.confirm({
+  //       member_id: this.member.node_id,
+  //       ...net!,
+  //     });
+  //     if (success) await this.net.onMemberChanged();
+  //     await this.net.onNetChanged();
+  //     return success;
+  //   } catch (e: any) {
+  //     this.setError(e);
+  //     throw e;
+  //   }
+  // }
 
   async inviteRefuse() {
     try {

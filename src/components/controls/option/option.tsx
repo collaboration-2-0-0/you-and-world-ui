@@ -1,6 +1,7 @@
+import { useCallback } from 'react';
+import clsx from 'clsx';
 import { Checkbox, CheckboxChangeEvent } from 'antd';
 import { useStyles } from './option.styles';
-import { useCallback } from 'react';
 
 export interface OptionProps<T = any> {
   id: string;
@@ -8,11 +9,12 @@ export interface OptionProps<T = any> {
   value: T;
   checked: boolean;
   onChange: (value: T, checked: boolean) => void;
+  className?: string;
 }
 
 export const Option = (props: OptionProps) => {
   const { root } = useStyles();
-  const { id, label, value, checked, onChange } = props;
+  const { id, label, value, checked, onChange, className } = props;
 
   const handleChange = useCallback(
     (e: CheckboxChangeEvent) => {
@@ -24,7 +26,7 @@ export const Option = (props: OptionProps) => {
   );
 
   return (
-    <div className={root}>
+    <div className={clsx(root, className)}>
       <label htmlFor={id}>{label}</label>
       <Checkbox id={id} type="checkbox" onChange={handleChange} checked={checked} />
     </div>

@@ -1,7 +1,7 @@
-import { useStyles } from './subject.styles';
-import { Option } from '@components/controls/option/option';
-import { ISubscription, SubscriptionSubjectKeys, SubscriptionTypeKeys } from '@shared/types/api';
 import { FC } from 'react';
+import { ISubscription, SubscriptionSubjectKeys, SubscriptionTypeKeys } from '@shared/types/api';
+import { Option } from '@components/controls/option/option';
+import { useStyles } from './subject.styles';
 
 interface SubjectProps {
   subject: SubscriptionSubjectKeys;
@@ -9,20 +9,20 @@ interface SubjectProps {
   update: (subscription: ISubscription, checked: boolean) => void;
 }
 
-const SUBJECTS: Record<SubscriptionSubjectKeys, string> = {
-  REPORT: 'Звіти за період та поточні потреби',
-  URGENT: 'Новини та оголошення',
-};
+// const SUBJECTS: Record<SubscriptionSubjectKeys, string> = {
+//   REPORT: 'Звіти за період та поточні потреби',
+//   URGENT: 'Новини та оголошення',
+// };
 
 const TYPES: Record<SubscriptionTypeKeys, string> = {
-  ON_UPDATE: 'Підписка активна',
+  ON_UPDATE: 'Новини та оголошення',
   ONE_WEEK: 'Щотижня',
   TWO_WEEK: 'Раз на два тижні',
   ONE_MONTH: 'Щомісяця',
 };
 
 export const Subject: FC<SubjectProps> = (props) => {
-  const { root, title } = useStyles();
+  const { root, option } = useStyles();
   const { subject, update } = props;
 
   let types = Object.entries(props.types);
@@ -38,12 +38,13 @@ export const Subject: FC<SubjectProps> = (props) => {
       value={{ subject, type }}
       onChange={update}
       checked={checked}
+      className={option}
     />
   ));
 
   return (
     <div className={root}>
-      <div className={title}>{SUBJECTS[subject]}</div>
+      {/* <div className={title}>{SUBJECTS[subject]}</div> */}
       {optionsJsx}
     </div>
   );

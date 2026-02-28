@@ -5,7 +5,8 @@ import { getMemberStatus } from '../../server/utils';
 import { Store } from '../lib/store/store';
 import { App } from '../app';
 import { Member } from './member.service';
-import { MemberActions } from './memberActions.class';
+import { MemberActions } from './memberActions.service';
+import { Subscription } from './subscription.service';
 
 interface NetState {
   userNet: T.INetResponse;
@@ -24,17 +25,19 @@ const INITIAL_STATE: NetState = {
   member: null,
 };
 
-export class Net extends Store<NetState> {
+export class NetService extends Store<NetState> {
   public memberActions: MemberActions;
+  public subscription: Subscription;
 
   constructor(private app: App) {
     super(INITIAL_STATE);
     this.memberActions = new MemberActions(this.app, this);
+    this.subscription = new Subscription(this.app, this);
   }
 
-  async onNetChanged() {
-    await this.enter(this.state.userNet!.net_id);
-  }
+  // async onNetChanged() {
+  //   await this.enter(this.state.userNet!.net_id);
+  // }
 
   async onMemberChanged() {
     if (this.state.netView === 'tree') await this.getTree();
@@ -65,6 +68,7 @@ export class Net extends Store<NetState> {
       await this.getCircle();
       await this.getTree();
     } else {
+      this.subscription.reset();
       this.setUserNetData();
       this.setCircle();
       this.setTree();
