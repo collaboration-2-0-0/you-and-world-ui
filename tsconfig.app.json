@@ -27,10 +27,11 @@
     "baseUrl": ".",
     "paths": {
       "@lib/*": ["lib/*"],
-      "@app/*": ["src/components/app/*"],
       "@shared/*": ["src/shared/*"],
       "@client/*": ["src/shared/client/*"],
+      "@types-db/*": ["src/shared/types/db/*"],
       "@components/*": ["src/components/*"],
+      "@app/*": ["src/components/app/*"],
       "@constants/*": ["src/constants/*"],
       "@contexts/*": ["src/contexts/*"],
       "@hooks/*": ["src/hooks/*"],

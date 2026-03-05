@@ -11,11 +11,11 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         '@lib': '/lib',
-        '@app': '/src/components/app',
-
         '@shared': '/src/shared',
         '@client': '/src/shared/client',
+        '@types-db': '/src/shared/types/db',
         '@components': '/src/components',
+        '@app': '/src/components/app',
         '@contexts': '/src/contexts',
         '@constants': '/src/constants',
         '@hooks': '/src/hooks',
