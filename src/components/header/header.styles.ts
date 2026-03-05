@@ -13,6 +13,10 @@ export const useStyles = createUseStyles(
     },
     titleButton: {
       flex: '1 0 0',
+      '& span': {
+        lineClamp: 2,
+        WebkitLineClamp: 2,
+      },
     },
     button: {
       width: 'auto',

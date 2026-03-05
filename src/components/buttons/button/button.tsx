@@ -21,13 +21,13 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = memo((props) => {
           rel="noopener noreferrer"
           className={clsx(root, btnType, className)}
         >
-          {rest.children}
+          <span>{rest.children}</span>
         </a>
       );
     }
     return (
       <Link to={href} className={clsx(root, btnType, className)}>
-        {rest.children}
+        <span>{rest.children}</span>
       </Link>
     );
   }

@@ -17,6 +17,15 @@ export const useStyles = createUseStyles(
       '& .icon': {
         margin: vars.gap.S,
       },
+      '& span': {
+        whiteSpace: 'break-spaces',
+        wordBreak: 'keep-all',
+        lineClamp: 2,
+        WebkitLineClamp: 2,
+        display: '-webkit-box',
+        WebkitBoxOrient: 'vertical',
+        overflow: 'hidden',
+      },
     },
   }),
   {

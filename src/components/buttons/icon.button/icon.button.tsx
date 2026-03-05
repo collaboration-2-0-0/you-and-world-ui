@@ -32,18 +32,18 @@ export const IconButton: FC<PropsWithChildren<IconButtonProps>> = memo((props) =
   if (href) {
     return (
       <NavLink to={href} end={end} className={cls} onClick={onClick}>
-        {iconPosition === 'right' && children}
+        <span>{iconPosition === 'right' && children}</span>
         <Icon icon={icon} className={classNameIcon} />
-        {iconPosition === 'left' && children}
+        <span>{iconPosition === 'left' && children}</span>
       </NavLink>
     );
   }
 
   return (
     <button className={cls} type="button" onClick={onClick}>
-      {iconPosition === 'right' && children}
+      <span>{iconPosition === 'right' && children}</span>
       <Icon icon={icon} className={classNameIcon} />
-      {iconPosition === 'left' && children}
+      <span>{iconPosition === 'left' && children}</span>
     </button>
   );
 });

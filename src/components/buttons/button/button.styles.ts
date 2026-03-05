@@ -39,6 +39,15 @@ export const useStyles = createUseStyles(
       '&:disabled': {
         opacity: 0.5,
       },
+      '& span': {
+        whiteSpace: 'break-spaces',
+        wordBreak: 'keep-all',
+        lineClamp: 1,
+        WebkitLineClamp: 1,
+        display: '-webkit-box',
+        WebkitBoxOrient: 'vertical',
+        overflow: 'hidden',
+      },
     },
   }),
   {
