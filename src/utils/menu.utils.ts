@@ -1,8 +1,8 @@
 import * as T from '@shared/types/api';
-import { IMenuItem } from '@components/menu/menu.types';
+import { IS_DEV } from '@client/constants';
 import { RoutesMap } from '@constants/router.constants';
-import { IS_DEV } from '@constants/constants';
 import { app } from '@app/app.provider';
+import { IMenuItem } from '@components/menu/menu.types';
 import { ICONS } from '@components/icon/icons';
 import { makeDynamicPathname } from './format.utils';
 

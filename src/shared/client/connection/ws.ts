@@ -1,12 +1,12 @@
 import { EventEmitter } from '../lib/event-emitter/event.emitter';
 import { TPromiseExecutor } from '@shared/types/api';
-import { IWsResponse, TFetch } from './types';
+import { PING_INTERVAL } from '@shared/server/constants';
 import {
   CONNECTION_ATTEMPT_COUNT,
   CONNECTION_ATTEMPT_DELAY,
   CONNECTION_TIMEOUT,
-} from '../constants';
-import { PING_INTERVAL } from '../../server/constants';
+} from '@client/constants';
+import { IWsResponse, TFetch } from './types';
 import { HttpResponseError } from './errors';
 import { logData, delay } from './utils';
 

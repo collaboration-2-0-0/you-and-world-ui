@@ -1,9 +1,9 @@
-import { API_URL } from '../../local/imports';
-import { getApi, IClientApi } from '../../server/client.api';
+import { getApi, IClientApi } from '@shared/server/client.api';
+import { API_URL } from '@client/constants';
+import { Store } from '../lib/store/store';
 import { HttpResponseError } from '../connection/errors';
 import { getConnection as getHttpConnection } from '../connection/http';
 import { getConnection as getWsConnection } from '../connection/ws';
-import { Store } from '../lib/store/store';
 
 export class Api extends Store {
   private baseUrl = API_URL;

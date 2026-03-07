@@ -1,4 +1,3 @@
-export * from '../../constants/constants';
 export * from './event.types';
 export * from './member.types';
 export * from './net.types';
