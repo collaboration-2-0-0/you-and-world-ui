@@ -1,5 +1,5 @@
 import * as T from '@shared/types/api';
-import { IS_DEV } from '@client/constants';
+import { IS_DEV } from '@client/envs';
 import { RoutesMap } from '@constants/router.constants';
 import { app } from '@app/app.provider';
 import { IMenuItem } from '@components/menu/menu.types';

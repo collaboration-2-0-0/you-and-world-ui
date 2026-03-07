@@ -1,9 +1,9 @@
 import { getApi, IClientApi } from '@shared/server/client.api';
-import { API_URL } from '@client/constants';
-import { Store } from '../lib/store/store';
-import { HttpResponseError } from '../connection/errors';
-import { getConnection as getHttpConnection } from '../connection/http';
-import { getConnection as getWsConnection } from '../connection/ws';
+import { API_URL } from '@client/envs';
+import { Store } from '@client/lib/store/store';
+import { HttpResponseError } from '@client/connection/errors';
+import { getConnection as getHttpConnection } from '@client/connection/http';
+import { getConnection as getWsConnection } from '@client/connection/ws';
 
 export class Api extends Store {
   private baseUrl = API_URL;

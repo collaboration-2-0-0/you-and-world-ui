@@ -1,7 +1,7 @@
 import * as T from '@shared/types/api';
-import { INIT_DATA, IS_DEV } from '@client/constants';
-import { Store } from '../lib/store/store';
-import { App } from '../app';
+import { INIT_DATA, IS_DEV } from '@client/envs';
+import { Store } from '@client/lib/store/store';
+import { App } from '@client/app';
 import { Messenger } from './messenger.service';
 
 interface AccountState {

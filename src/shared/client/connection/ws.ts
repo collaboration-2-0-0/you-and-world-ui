@@ -1,12 +1,12 @@
-import { EventEmitter } from '../lib/event-emitter/event.emitter';
-import { TPromiseExecutor } from '@shared/types/api';
+import { TPromiseExecutor } from '@shared/types';
 import { PING_INTERVAL } from '@shared/server/constants';
 import {
   CONNECTION_ATTEMPT_COUNT,
   CONNECTION_ATTEMPT_DELAY,
   CONNECTION_TIMEOUT,
 } from '@client/constants';
-import { IWsResponse, TFetch } from './types';
+import { EventEmitter } from '@client/lib/event-emitter/event.emitter';
+import { IWsResponse, TRpc } from './types';
 import { HttpResponseError } from './errors';
 import { logData, delay } from './utils';
 
@@ -146,7 +146,7 @@ export const getConnection = (
   baseUrl: string,
   onConnection: () => void,
   onMessage: (data: any) => void,
-): TFetch => {
+): TRpc => {
   const connection = new WsConnection(baseUrl);
   connection.on('connection', onConnection);
   connection.on('message', onMessage);

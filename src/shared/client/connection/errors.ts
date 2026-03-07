@@ -1,4 +1,4 @@
-import { createEnumFromMap } from '../../server/transform.utils';
+import { createEnumFromMap } from '@shared/server/transform.utils';
 
 export const HTTP_RESPONSE_ERROR_MAP = {
   400: 'BadRequest',
