@@ -1,3 +1,5 @@
+import { NetEventKeys } from './event';
+
 export const TABLES_MAP = {
   USERS: 'users',
   USERS_TOKENS: 'users_tokens',
@@ -129,9 +131,9 @@ export type ITableEvents = {
   event_id: number;
   user_id: number;
   net_id: number | null;
-  net_view: string | null /* NetViewKeys */;
+  net_view: null /* NetViewKeys */;
   from_node_id: number | null;
-  event_type: string /* NetEventKeys */;
+  event_type: NetEventKeys;
   message: string;
   date: string;
 };

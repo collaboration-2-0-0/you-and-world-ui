@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import { ISubscription } from '@shared/types/api';
+import { ISubscription } from '@shared/local/imports';
 import { MessagesMap } from '@constants/messages';
 import { modalService } from '@services/modal.service';
 import { OptionProps } from '@components/controls/option/option';

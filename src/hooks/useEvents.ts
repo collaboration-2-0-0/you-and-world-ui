@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { IEvent, IEvents, NetViewKeys } from '@shared/types/api';
+import { NetViewKeys } from '@shared/types/db';
+import { IEvent, IEvents } from '@shared/local/imports';
 import { app } from '@app/app.provider';
 import { EventStore } from '@client/services/event.store.class';
 import { modalService } from '@services/modal.service';

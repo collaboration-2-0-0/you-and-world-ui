@@ -13,7 +13,6 @@ export default defineConfig(({ mode }) => {
         '@lib': '/lib',
         '@shared': '/src/shared',
         '@client': '/src/shared/client',
-        '@types-db': '/src/shared/types/db',
         '@components': '/src/components',
         '@app': '/src/components/app',
         '@contexts': '/src/contexts',

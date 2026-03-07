@@ -1,10 +1,14 @@
-import * as T from '@shared/types/api';
 import { Store } from '../lib/store/store';
 import { App } from '../app';
 import { NetService } from './net.service';
+import {
+  ISubscription,
+  SubscriptionSubjectKeys,
+  SubscriptionTypeKeys,
+} from '@shared/local/imports';
 
 interface SubscriptionServiceState {
-  subscriptions: Record<T.SubscriptionSubjectKeys, Record<T.SubscriptionTypeKeys, boolean>>;
+  subscriptions: Record<SubscriptionSubjectKeys, Record<SubscriptionTypeKeys, boolean>>;
 }
 
 const getState = (): SubscriptionServiceState['subscriptions'] =>
@@ -52,14 +56,14 @@ export class Subscription extends Store<SubscriptionServiceState> {
     this.setState({ subscriptions, status: 'READY' });
   }
 
-  async update(subscription: T.ISubscription) {
+  async update(subscription: ISubscription) {
     const { node_id } = this.net.state.userNet || {};
     if (!node_id) return;
     await this.api.update({ ...subscription, node_id });
     await this.read();
   }
 
-  async remove(subscription?: T.ISubscription) {
+  async remove(subscription?: ISubscription) {
     const { node_id } = this.net.state.userNet || {};
     if (!node_id) return;
     await this.api.remove({ ...subscription, node_id });

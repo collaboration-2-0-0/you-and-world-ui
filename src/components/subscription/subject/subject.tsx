@@ -1,12 +1,12 @@
 import { FC } from 'react';
-import { ISubscription, SubscriptionSubjectKeys, SubscriptionTypeKeys } from '@shared/types/api';
+import * as T from '@shared/local/imports';
 import { Option } from '@components/controls/option/option';
 import { useStyles } from './subject.styles';
 
 interface SubjectProps {
-  subject: SubscriptionSubjectKeys;
-  types: Record<SubscriptionTypeKeys, boolean>;
-  update: (subscription: ISubscription, checked: boolean) => void;
+  subject: T.SubscriptionSubjectKeys;
+  types: Record<T.SubscriptionTypeKeys, boolean>;
+  update: (subscription: T.ISubscription, checked: boolean) => void;
 }
 
 // const SUBJECTS: Record<SubscriptionSubjectKeys, string> = {
@@ -14,7 +14,7 @@ interface SubjectProps {
 //   URGENT: 'Новини та оголошення',
 // };
 
-const TYPES: Record<SubscriptionTypeKeys, string> = {
+const TYPES: Record<T.SubscriptionTypeKeys, string> = {
   ON_UPDATE: 'Новини та оголошення',
   ONE_WEEK: 'Щотижня',
   TWO_WEEK: 'Раз на два тижні',
@@ -34,7 +34,7 @@ export const Subject: FC<SubjectProps> = (props) => {
     <Option
       key={type}
       id={`${subject}-${type}`}
-      label={TYPES[type as SubscriptionTypeKeys]}
+      label={TYPES[type as T.SubscriptionTypeKeys]}
       value={{ subject, type }}
       onChange={update}
       checked={checked}

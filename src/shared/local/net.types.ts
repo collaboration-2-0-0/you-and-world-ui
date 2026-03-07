@@ -1,5 +1,4 @@
-import * as T from '@types-db/db.types';
-import { INetMember } from './member.types';
+import * as T from '@shared/types/db';
 
 export type INet = T.ITableNets & T.ITableNetsData;
 
@@ -8,12 +7,9 @@ export type IUserNet = T.ITableNets &
   T.ITableNodes &
   T.ITableMembers;
 
-export const NET_VIEW_MAP = ['net', 'tree', 'circle'] as const;
-export type NetViewKeys = (typeof NET_VIEW_MAP)[number];
-
 /* net structure */
 export type INetNode = {
-  member: INetMember;
+  member: T.INodeMember;
   tree: INetNode[] | null;
   connection: boolean;
 };

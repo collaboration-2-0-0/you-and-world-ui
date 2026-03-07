@@ -5,6 +5,7 @@ import { Api } from './services/api.service';
 import { NetService } from './services/net.service';
 import { UserNets } from './services/user.nets.class';
 import { EventService } from './services/events.class';
+import { IEvents } from '@shared/local/imports';
 
 interface AppState {
   userStatus: T.UserStatusKey;
@@ -110,7 +111,7 @@ export class App extends Store<AppState> {
     }
   }
 
-  async onNewEvents(events: T.IEvents) {
+  async onNewEvents(events: IEvents) {
     const { userNet: net } = this.net.state;
     const { net_id } = net || {};
     let updateUser = false;

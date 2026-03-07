@@ -2,13 +2,14 @@ import * as T from '@shared/types/api';
 import { Store } from '@client/lib/store/store';
 import { EventStore } from './event.store.class';
 import { App } from '@client/app';
+import { IEvent, IEvents } from '@shared/local/imports';
 
 interface EventServiceState {
-  netEvents: T.IEvents;
+  netEvents: IEvents;
 }
 
 export class EventService extends Store<EventServiceState> {
-  private lastEvent: T.IEvent;
+  private lastEvent: IEvent;
   private netEventsMap = new Map<number, EventStore>();
 
   constructor(private app: App) {
@@ -42,7 +43,7 @@ export class EventService extends Store<EventServiceState> {
     }
   }
 
-  private async setNewEvents(newEvents: T.IEvents) {
+  private async setNewEvents(newEvents: IEvents) {
     const netEvents = [...this.$state.netEvents, ...newEvents];
     for (const event of newEvents) {
       const { net_id, net_view } = event;
@@ -62,7 +63,7 @@ export class EventService extends Store<EventServiceState> {
     return this.netEventsMap;
   }
 
-  setLastEventId(events: T.IEvents) {
+  setLastEventId(events: IEvents) {
     for (const lastEvent of events) {
       if (!lastEvent.event_id) continue;
       this.lastEvent = lastEvent;
@@ -105,7 +106,7 @@ export class EventService extends Store<EventServiceState> {
     this.setNewEvents([event]).catch(() => {});
   }
 
-  async confirm(event: T.IEvent) {
+  async confirm(event: IEvent) {
     try {
       if (!event.event_id) return;
       await this.app.api.events.confirm(event);
@@ -116,7 +117,7 @@ export class EventService extends Store<EventServiceState> {
     }
   }
 
-  remove(event: T.IEvent) {
+  remove(event: IEvent) {
     const { net_id, net_view } = event;
     let eventStore = this.netEventsMap.get(0);
     if (net_id && net_view) {
@@ -128,7 +129,7 @@ export class EventService extends Store<EventServiceState> {
     this.setState({ netEvents });
   }
 
-  drop(event: T.IEvent) {
+  drop(event: IEvent) {
     this.$state.netEvents = this.$state.netEvents.filter((i) => i.event_id !== event.event_id);
   }
 }

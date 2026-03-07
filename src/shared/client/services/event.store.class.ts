@@ -1,6 +1,6 @@
-import * as T from '@shared/types/api';
 import { INetEvents } from '../types';
 import { Store } from '@client/lib/store/store';
+import { IEvent, IEvents } from '@shared/local/event.types';
 
 export class EventStore extends Store<INetEvents> {
   private childMap = new Map<number, EventStore>();
@@ -32,13 +32,13 @@ export class EventStore extends Store<INetEvents> {
     return this.getCount() + this.getChildCount();
   }
 
-  addEvents(newEvents: T.IEvents) {
+  addEvents(newEvents: IEvents) {
     const { events: curEvents } = this.state;
     const events = [...curEvents, ...newEvents];
     this.setState({ events });
   }
 
-  removeEvent(event: T.IEvent) {
+  removeEvent(event: IEvent) {
     const events = this.state.events.filter((v) => event.event_id !== v.event_id);
     this.setState({ events });
   }

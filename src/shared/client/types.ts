@@ -1,3 +1,4 @@
+import { IEvents } from '@shared/local/imports';
 import * as T from '@shared/types/api';
 
 export interface INets {
@@ -8,7 +9,7 @@ export interface INets {
 
 export interface INetEvents {
   netId: number;
-  events: T.IEvents;
+  events: IEvents;
   childEventsCount: number;
 }
 

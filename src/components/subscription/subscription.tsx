@@ -1,7 +1,7 @@
 import { useStyles } from './subscription.styles';
 // import { Button } from '@components/buttons/button/button';
 import { useSubscription } from './useSubscription';
-import { SubscriptionSubjectKeys } from '@shared/types/api';
+import { SubscriptionSubjectKeys } from '@shared/local/imports';
 import { Subject } from './subject/subject';
 
 export const Subscription = () => {
