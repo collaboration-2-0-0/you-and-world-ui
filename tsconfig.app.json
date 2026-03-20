@@ -26,7 +26,6 @@
     //
     "baseUrl": ".",
     "paths": {
-      "@lib/*": ["lib/*"],
       "@shared/*": ["src/shared/*"],
       "@client/*": ["src/shared/client/*"],
       "@components/*": ["src/components/*"],
@@ -41,5 +40,5 @@
       "@views/*": ["src/views/*"]
     }
   },
-  "include": ["src", "lib"]
+  "include": ["src"]
 }

@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { TREE_MEMBERS_COUNT } from '@shared/server/constants';
 import { useCircle } from '@hooks/useCircle';
 import { MemberCard } from '@components/member/card/member.card';
 import { UserCard } from '@components/member/card/user.card';
@@ -7,9 +8,9 @@ import { useStyles } from './net.view.styles';
 
 export const NetCircle: FC = () => {
   useCircle();
-  const { root } = useStyles();
+  const { root, cards } = useStyles();
 
-  const circleJsx = new Array(7)
+  const circleJsx = new Array(TREE_MEMBERS_COUNT + 1)
     .fill('circle')
     .map((_, j) =>
       j === 1 ? (
@@ -21,7 +22,7 @@ export const NetCircle: FC = () => {
 
   return (
     <div className={root}>
-      {circleJsx}
+      <div className={cards}>{circleJsx}</div>
       <NetViewMenu netView="circle" />
     </div>
   );

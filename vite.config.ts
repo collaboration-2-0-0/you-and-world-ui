@@ -10,7 +10,6 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     resolve: {
       alias: {
-        '@lib': '/lib',
         '@shared': '/src/shared',
         '@client': '/src/shared/client',
         '@components': '/src/components',
