@@ -15,12 +15,13 @@ export const MemberCard: FC<MemberCardProps> = (props) => {
   const {
     node_id: nodeId,
     member_name: memberName,
+    photo_url: photoUrl,
     memberStatus = 'UNAVAILABLE',
     dislike,
     vote,
     vote_count: voteCount,
   } = member || {};
-  const { root, avatar, name, [memberStatus]: status } = useStyles();
+  const { root, avatar, name, photo, [memberStatus]: status } = useStyles();
 
   const navigate = useNavigateTo();
   const handleClick = useCallback(
@@ -36,8 +37,13 @@ export const MemberCard: FC<MemberCardProps> = (props) => {
 
   return (
     <div className={clsx(root, status)} onClick={handleClick} aria-hidden="true">
-      {/* <div className={avatar} /> */}
-      <Icon icon="avatar" className={avatar} />
+      {photoUrl ? (
+        <div className={clsx(avatar, photo)}>
+          <img src={photoUrl} />
+        </div>
+      ) : (
+        <Icon icon="avatar" className={avatar} />
+      )}
       <div className={name}>{memberName}</div>
       <MemberStatus memberStatus={memberStatus} />
       <MemberDislike nodeId={nodeId} memberStatus={memberStatus} dislike={dislike} />

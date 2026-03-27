@@ -1,4 +1,5 @@
 import { FC, useCallback, MouseEvent } from 'react';
+import clsx from 'clsx';
 import { NetViewEnum } from '@shared/types/api';
 import { useNavigateTo } from '@hooks/useNavigateTo';
 import { app } from '@app/app.provider';
@@ -11,7 +12,7 @@ interface NetUserCardProps {
 }
 
 export const UserCard: FC<NetUserCardProps> = (props) => {
-  const { root, avatar, name: clsName } = useStyles();
+  const { root, avatar, photo, name: clsName } = useStyles();
   const { userNet: net, user, userNetData, circle } = app.getState();
   const { node_id: nodeId, confirmed, vote, vote_count: voteCount } = userNetData!;
   const memberStatus = confirmed ? 'ACTIVE' : 'CONNECTED';
@@ -27,11 +28,18 @@ export const UserCard: FC<NetUserCardProps> = (props) => {
     [navigate, net, netView],
   );
 
-  const userName = user!.name ? `Я (${user!.name})` : 'Я';
+  const userName = user?.name ? `Я (${user.name})` : 'Я';
+  const photoUrl = user?.photo_url;
+
   return (
     <div className={root} onClick={handleClick} aria-hidden="true">
-      {/* <div className={avatar} /> */}
-      <Icon icon="avatar" className={avatar} />
+      {photoUrl ? (
+        <div className={clsx(avatar, photo)}>
+          <img src={photoUrl} />
+        </div>
+      ) : (
+        <Icon icon="avatar" className={avatar} />
+      )}
       <div className={clsName}>{userName}</div>
       <MemberVote
         nodeId={nodeId}

@@ -24,9 +24,12 @@ export const useStyles = createUseStyles(
     avatar: {
       gridArea: 'avatar',
       ...mixins.size(54),
-      // border: `1px solid ${palette.add.main}`,
-      // borderRadius: 100,
       color: palette.first.extraLight,
+      borderRadius: 100,
+      overflow: 'hidden',
+    },
+    photo: {
+      border: `1px solid ${palette.first.main}`,
     },
     name: {
       gridArea: 'name',
