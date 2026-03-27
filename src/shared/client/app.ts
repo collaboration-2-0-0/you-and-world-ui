@@ -1,14 +1,14 @@
-import * as T from '@shared/types/api';
+import { UserStatusKey, IEvents } from '@shared/types/api';
+import { IMessage, MessageTypeKeys } from '@shared/local/imports';
 import { Store } from './lib/store/store';
 import { Account } from './services/account.service';
 import { Api } from './services/api.service';
 import { NetService } from './services/net.service';
 import { UserNets } from './services/user.nets.class';
 import { EventService } from './services/events.class';
-import { IEvents } from '@shared/local/imports';
 
 interface AppState {
-  userStatus: T.UserStatusKey;
+  userStatus: UserStatusKey;
 }
 
 const INITIAL_STATE: AppState = {
@@ -142,7 +142,7 @@ export class App extends Store<AppState> {
     if (updateNet) await this.net.enter(net_id!).catch(console.log);
   }
 
-  setMessage<T extends T.MessageTypeKeys>(messageData: T.IMessage<T>) {
+  setMessage<T extends MessageTypeKeys>(messageData: IMessage<T>) {
     if (!messageData) return;
 
     if (this.userEvents.isEventMessage(messageData)) {

@@ -9,5 +9,5 @@ export const useStyles = createUseStyles(
       padding: `0 ${vars.gap.L}`,
     },
   }),
-  { name: 'NetRules' },
+  { name: 'NetGoal' },
 );

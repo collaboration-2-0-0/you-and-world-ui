@@ -14,7 +14,7 @@ const pathToInvite = RoutesMap.NET.INVITE;
 const FormikProvider = Formik<MemberInviteFormValues>;
 const showSuccess = () => modalService.showMessage(MessagesMap.MEMBER_INVITE_CREATE);
 const showFail = () => modalService.showError(MessagesMap.MEMBER_INVITE_CREATE_FAIL);
-const showNotGoal = () => modalService.showError(MessagesMap.NET_NOT_GOAL);
+// const showNotGoal = () => modalService.showError(MessagesMap.NET_NOT_GOAL);
 
 const MemberInviteCreate: FC = () => {
   const { buttons } = useStyles();
@@ -49,8 +49,8 @@ export const MemberInviteCreateForm = () => {
       initialValues={{ member_name: memberName }}
       validationSchema={MemberInviteSchema}
       onSubmit={(values) => {
-        const { userNet: net } = app.getState();
-        if (!net?.goal) return showNotGoal();
+        // const { userNet: net } = app.getState();
+        // if (!net?.goal) return showNotGoal();
         app.net.state
           .member!.createInvite(values)
           .then(async (token) => {

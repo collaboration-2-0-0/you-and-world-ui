@@ -1,6 +1,7 @@
-import { INetEvents } from '../types';
+import { IEvents } from '@shared/types/api';
+import { IEvent } from '@shared/local/imports';
 import { Store } from '@client/lib/store/store';
-import { IEvent, IEvents } from '@shared/local/event.types';
+import { INetEvents } from '../types';
 
 export class EventStore extends Store<INetEvents> {
   private childMap = new Map<number, EventStore>();

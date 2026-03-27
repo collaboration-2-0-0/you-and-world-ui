@@ -1,15 +1,15 @@
-import * as T from '@shared/types/api';
+import { IEvents, INetsResponse } from '@shared/types/api';
+import * as T from '@shared/local/imports';
 import { Store } from '@client/lib/store/store';
-import { EventStore } from './event.store.class';
 import { App } from '@client/app';
-import { IEvent, IEvents } from '@shared/local/imports';
+import { EventStore } from './event.store.class';
 
 interface EventServiceState {
   netEvents: IEvents;
 }
 
 export class EventService extends Store<EventServiceState> {
-  private lastEvent: IEvent;
+  private lastEvent: T.IEvent;
   private netEventsMap = new Map<number, EventStore>();
 
   constructor(private app: App) {
@@ -24,7 +24,7 @@ export class EventService extends Store<EventServiceState> {
     this.netEventsMap.set(0, new EventStore(0));
   }
 
-  private onAllNets(nets: T.INetsResponse) {
+  private onAllNets(nets: INetsResponse) {
     for (const net of nets) {
       const { net_id, parent_net_id } = net;
       if (this.netEventsMap.has(net_id)) continue;
@@ -106,7 +106,7 @@ export class EventService extends Store<EventServiceState> {
     this.setNewEvents([event]).catch(() => {});
   }
 
-  async confirm(event: IEvent) {
+  async confirm(event: T.IEvent) {
     try {
       if (!event.event_id) return;
       await this.app.api.events.confirm(event);
@@ -117,7 +117,7 @@ export class EventService extends Store<EventServiceState> {
     }
   }
 
-  remove(event: IEvent) {
+  remove(event: T.IEvent) {
     const { net_id, net_view } = event;
     let eventStore = this.netEventsMap.get(0);
     if (net_id && net_view) {
@@ -129,7 +129,7 @@ export class EventService extends Store<EventServiceState> {
     this.setState({ netEvents });
   }
 
-  drop(event: IEvent) {
+  drop(event: T.IEvent) {
     this.$state.netEvents = this.$state.netEvents.filter((i) => i.event_id !== event.event_id);
   }
 }

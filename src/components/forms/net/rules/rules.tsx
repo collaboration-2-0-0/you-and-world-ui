@@ -2,50 +2,51 @@ import { FC } from 'react';
 import { Formik, useFormikContext } from 'formik';
 import { MessagesMap } from '@constants/messages';
 import { modalService } from '@services/modal.service';
-import { app } from '@app/app.provider';
-import { NetGoalField, NetGoalFormValues, NetGoalSchema } from './goal.schema';
 import { MdContentEdit } from '@components/controls/md-content-edit/md.content.edit';
+import { app } from '@components/app/app.provider';
+import { NetRulesSchema, NetRulesFormValues, NetRulesField } from './rules.schema';
 
-const FormikProvider = Formik<NetGoalFormValues>;
+const FormikProvider = Formik<NetRulesFormValues>;
 const showSuccess = () => modalService.showMessage(MessagesMap.SUCCESS);
 const showFail = () => modalService.showError('FAIL');
 
-const NetGoal: FC = () => {
-  const { submitForm, values } = useFormikContext<NetGoalFormValues>();
+const NetRules: FC = () => {
+  const { submitForm, values } = useFormikContext<NetRulesFormValues>();
   const { userNetData, userNet } = app.getState();
-
-  const { parent_node_id: parentNodeId } = userNetData!;
-  const editable = parentNodeId === null;
+  const editable = userNetData?.parent_node_id === null;
 
   const handleSubmit = () => {
-    const changed = userNet!.goal !== values[NetGoalField.GOAL];
+    const changed = userNet!.rules !== values[NetRulesField.RULES];
     if (changed) {
       submitForm().catch(() => null);
     }
   };
 
-  return <MdContentEdit name={NetGoalField.GOAL} onEditEnd={handleSubmit} editable={editable} />;
+  return <MdContentEdit name={NetRulesField.RULES} onEditEnd={handleSubmit} editable={editable} />;
 };
 
-export const NetGoalForm = () => {
+export const NetRulesForm = () => {
   const { userNet: net } = app.getState();
-  const { goal } = net!;
+  const { rules } = net!;
 
   return (
     <FormikProvider
-      initialValues={{ goal: goal || '' }}
-      validationSchema={NetGoalSchema}
+      initialValues={{ rules: rules || '' }}
+      validationSchema={NetRulesSchema}
       onSubmit={async (values) => {
         await app.net
           .update(values)
           .then((newNet) => {
-            if (!newNet) return showFail();
-            showSuccess();
+            if (newNet) {
+              showSuccess();
+            } else {
+              showFail();
+            }
           })
           .catch(() => showFail());
       }}
     >
-      <NetGoal />
+      <NetRules />
     </FormikProvider>
   );
 };

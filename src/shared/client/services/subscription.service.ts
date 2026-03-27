@@ -33,8 +33,6 @@ export class Subscription extends Store<SubscriptionServiceState> {
     private net: NetService,
   ) {
     super({ subscriptions: getState() }, undefined, 'INIT');
-    console.log(app.api?.subscription);
-    setTimeout(() => console.log(app.api.subscription), 2000);
   }
 
   private get api() {
