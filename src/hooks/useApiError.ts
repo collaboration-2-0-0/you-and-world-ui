@@ -1,7 +1,11 @@
 import { app } from '@components/app/app.provider';
 
 export const useApiError = () => {
-  const { error } = app.apiService.useState(['error']);
+  const { error, status } = app.apiService.useState(['error']);
 
-  return error;
+  if (status === 'INIT') {
+    return null;
+  }
+
+  return error && (error.cause as Error);
 };

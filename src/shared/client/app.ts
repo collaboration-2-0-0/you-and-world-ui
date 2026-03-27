@@ -16,9 +16,7 @@ const INITIAL_STATE: AppState = {
 };
 
 export class App extends Store<AppState> {
-  apiService: Api = new Api(() => {
-    this.handleConnect().catch(() => null);
-  }, this.setMessage.bind(this));
+  apiService: Api;
   account: Account = new Account(this);
   net: NetService = new NetService(this);
   userNets: UserNets = new UserNets(this);
@@ -26,6 +24,9 @@ export class App extends Store<AppState> {
 
   constructor() {
     super(INITIAL_STATE, undefined, 'INIT');
+    this.apiService = new Api(() => {
+      this.handleConnect().catch(() => null);
+    }, this.setMessage.bind(this));
     this.account.subscribe(() => this.onNewUser(), ['user']);
     this.net.subscribe(() => this.onNewNet(), ['userNet']);
   }
@@ -47,17 +48,23 @@ export class App extends Store<AppState> {
   getState() {
     return {
       ...this.account.getState(),
-      userStatus: this.state.userStatus,
+      userStatus: this.$state.userStatus,
       ...this.userNets.state,
-      events: this.userEvents.getEvents(),
       ...this.net.state,
+      events: this.userEvents.getEvents(),
     };
   }
 
   private async handleConnect() {
-    if (this.status === 'INIT') return;
+    if (this.status === 'INIT') {
+      return;
+    }
+
     const { userStatus } = this.$state;
-    if (userStatus === 'NOT_LOGGED_IN') return;
+    if (userStatus === 'NOT_LOGGED_IN') {
+      return;
+    }
+
     await this.api.chat.connect.user().catch((e) => this.setError(e));
     await this.userEvents.read().catch((e) => this.setError(e));
   }

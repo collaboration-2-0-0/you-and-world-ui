@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Formik, useFormikContext } from 'formik';
 import { MessagesMap } from '@constants/messages';
 import { modalService } from '@services/modal.service';
@@ -11,7 +11,7 @@ const showSuccess = () => modalService.showMessage(MessagesMap.SUCCESS);
 const showFail = () => modalService.showError('FAIL');
 
 const NetGoal: FC = () => {
-  const { submitForm, values } = useFormikContext<NetGoalFormValues>();
+  const { submitForm, values, errors } = useFormikContext<NetGoalFormValues>();
   const { userNetData, userNet } = app.getState();
 
   const { parent_node_id: parentNodeId } = userNetData!;
@@ -23,6 +23,13 @@ const NetGoal: FC = () => {
       submitForm().catch(() => null);
     }
   };
+
+  useEffect(() => {
+    const error = errors[NetGoalField.GOAL];
+    if (error) {
+      modalService.showError(`${error}`);
+    }
+  }, [errors]);
 
   return <MdContentEdit name={NetGoalField.GOAL} onEditEnd={handleSubmit} editable={editable} />;
 };
@@ -42,7 +49,7 @@ export const NetGoalForm = () => {
             if (!newNet) return showFail();
             showSuccess();
           })
-          .catch(() => showFail());
+          .catch(() => null);
       }}
     >
       <NetGoal />

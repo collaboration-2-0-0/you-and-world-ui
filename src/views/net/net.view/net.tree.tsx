@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import clsx from 'clsx';
 import { TREE_MEMBERS_COUNT } from '@shared/server/constants';
 import { useTree } from '@hooks/useTree';
 import { MemberCard } from '@components/member/card/member.card';
@@ -8,7 +9,7 @@ import { useStyles } from './net.view.styles';
 
 export const NetTree: FC = () => {
   useTree();
-  const { root, cards } = useStyles();
+  const { root, cards, tree, menu } = useStyles();
 
   const treeJsx = new Array(TREE_MEMBERS_COUNT + 1)
     .fill('tree')
@@ -21,8 +22,10 @@ export const NetTree: FC = () => {
     );
 
   return (
-    <div className={root}>
-      <NetViewMenu netView="tree" />
+    <div className={clsx(root, tree)}>
+      <div className={menu}>
+        <NetViewMenu netView="tree" />
+      </div>
       <div className={cards}>{treeJsx}</div>
     </div>
   );

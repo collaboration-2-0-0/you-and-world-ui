@@ -4,7 +4,7 @@ export enum NetGoalField {
   GOAL = 'goal',
 }
 export const NetGoalSchema = yup.object().shape({
-  [NetGoalField.GOAL]: yup.string().required().min(10).max(255),
+  [NetGoalField.GOAL]: yup.string().required().min(10).max(1024),
 });
 
 export interface NetGoalFormValues {

@@ -19,7 +19,7 @@ export class Api extends Store {
 
   async init() {
     try {
-      const connection = this.getConnection();
+      const connection = this.getConnection('http');
       this.api = getApi(connection);
       await this.api.health();
     } catch (e: any) {
@@ -35,6 +35,7 @@ export class Api extends Store {
         throw e;
       }
     }
+
     this.setState({ status: 'READY' });
   }
 
@@ -46,7 +47,7 @@ export class Api extends Store {
 
     const baseUrl = this.baseUrl.replace('http', 'ws');
     const connection = getWsConnection(baseUrl, this.onConnect, this.onMessage);
-    return this.interceptor(connection) as typeof connection;
+    return this.interceptor(connection);
   }
 
   interceptor(connection: (...args: any[]) => Promise<any>) {
@@ -57,13 +58,14 @@ export class Api extends Store {
       try {
         return await connection(...args);
       } catch (e) {
-        this.events.emit('error', e);
+        this.setError(e);
         throw e;
       } finally {
         this.requests.delete(req);
         this.setState({ loading: this.requests.size > 0 });
       }
     };
+
     return wrapper;
   }
 }

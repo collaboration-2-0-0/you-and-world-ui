@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Formik, useFormikContext } from 'formik';
 import { MessagesMap } from '@constants/messages';
 import { modalService } from '@services/modal.service';
@@ -11,7 +11,7 @@ const showSuccess = () => modalService.showMessage(MessagesMap.SUCCESS);
 const showFail = () => modalService.showError('FAIL');
 
 const NetRules: FC = () => {
-  const { submitForm, values } = useFormikContext<NetRulesFormValues>();
+  const { submitForm, values, errors } = useFormikContext<NetRulesFormValues>();
   const { userNetData, userNet } = app.getState();
   const editable = userNetData?.parent_node_id === null;
 
@@ -21,6 +21,13 @@ const NetRules: FC = () => {
       submitForm().catch(() => null);
     }
   };
+
+  useEffect(() => {
+    const error = errors[NetRulesField.RULES];
+    if (error) {
+      modalService.showError(`${error}`);
+    }
+  }, [errors]);
 
   return <MdContentEdit name={NetRulesField.RULES} onEditEnd={handleSubmit} editable={editable} />;
 };
@@ -43,7 +50,7 @@ export const NetRulesForm = () => {
               showFail();
             }
           })
-          .catch(() => showFail());
+          .catch(() => null);
       }}
     >
       <NetRules />
