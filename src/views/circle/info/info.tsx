@@ -14,23 +14,16 @@ export const CircleInfo: FC = () => {
     value: notEmpty ? circle[0].count_of_members : userCountOfMembers,
   };
 
-  const facilitatorCount = notEmpty &&
-    circle[0].user_id && {
-      title: circle[0].member_name,
-      value: circle[0].count_of_members - 1,
-    };
-
   const userCount = {
     title: 'Я',
-    value: userCountOfMembers - 1,
+    value: userCountOfMembers,
   };
 
   const data = circle
     .filter(({ memberStatus }, i) => i > 0 && memberStatus === 'ACTIVE')
-    .map(({ member_name: title, count_of_members: v }) => ({ title, value: v - 1 }));
+    .map(({ member_name: title, count_of_members: v }) => ({ title, value: v }));
 
   const items = [count];
-  facilitatorCount && items.push(facilitatorCount);
   items.push(userCount, ...data);
 
   return (

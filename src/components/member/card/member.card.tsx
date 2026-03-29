@@ -40,7 +40,7 @@ export const MemberCard: FC<MemberCardProps> = (props) => {
 
   return (
     <div className={clsx(root, status)} onClick={handleClick} aria-hidden="true">
-      <MemberAvatar photoUrl={photoUrl} />
+      <MemberAvatar memberStatus={memberStatus} photoUrl={photoUrl} />
       <div className={name}>{memberName}</div>
       <MemberStatus memberStatus={memberStatus} />
       <MemberVote

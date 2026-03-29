@@ -10,7 +10,7 @@ export const useStyles = createUseStyles(
     },
     row: {
       display: 'grid',
-      gridTemplateColumns: '8fr 2fr',
+      gridTemplateColumns: '8fr 3fr',
       gap: vars.gap.main,
       '& *': {
         padding: vars.gap.S,
