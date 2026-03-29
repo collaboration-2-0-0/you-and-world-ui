@@ -32,7 +32,7 @@ export const UserCard: FC<NetUserCardProps> = (props) => {
 
   return (
     <div className={root} onClick={handleClick} aria-hidden="true">
-      <MemberAvatar photoUrl={photoUrl} />
+      <MemberAvatar memberStatus={memberStatus} photoUrl={photoUrl} />
       <div className={clsName}>{userName}</div>
       <MemberVote
         nodeId={nodeId}
