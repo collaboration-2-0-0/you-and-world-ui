@@ -10,15 +10,14 @@ export const useStyles = createUseStyles(
       padding: '5px 0',
       '& label': {
         color: palette.first.main,
+        '--ant-color-primary': palette.first.main,
+        '--ant-color-primary-hover': palette.first.light,
       },
-      '& .ant-checkbox-checked .ant-checkbox-inner': {
-        background: palette.first.main,
-      },
-      '& .ant-checkbox-inner': {
-        width: 20,
-        height: 20,
+      '& .ant-checkbox': {
+        width: 18,
+        height: 18,
         '&:after': {
-          height: 13,
+          height: 12,
         },
       },
     },

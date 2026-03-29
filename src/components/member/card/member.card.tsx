@@ -2,15 +2,16 @@ import { FC, useCallback, MouseEvent } from 'react';
 import clsx from 'clsx';
 import { useNavigateTo } from '@hooks/useNavigateTo';
 import { useMemberCard } from '@hooks/useMemberCard';
-import { Icon } from '@components/icon/icon';
-import { MemberStatus } from '@components/member/status/member.status';
 import { MemberCardProps } from './member.card.types';
-import { MemberDislike } from '../dislike/member.dislike';
+import { MemberAvatar } from '../avatar/avatar';
+import { MemberStatus } from '../status/member.status';
 import { MemberVote } from '../vote/member.vote';
+import { MemberDislike } from '../dislike/member.dislike';
+import { MemberAddress } from '../address/member.addres';
 import { useStyles } from './member.card.styles';
 
 export const MemberCard: FC<MemberCardProps> = (props) => {
-  const { netView } = props;
+  const navigate = useNavigateTo();
   const [net, member, memberPosition] = useMemberCard(props);
   const {
     node_id: nodeId,
@@ -21,9 +22,9 @@ export const MemberCard: FC<MemberCardProps> = (props) => {
     vote,
     vote_count: voteCount,
   } = member || {};
-  const { root, avatar, name, photo, [memberStatus]: status } = useStyles();
+  const { root, name, [memberStatus]: status } = useStyles();
+  const { netView } = props;
 
-  const navigate = useNavigateTo();
   const handleClick = useCallback(
     (e: MouseEvent) => {
       if (e.isDefaultPrevented()) return;
@@ -33,20 +34,15 @@ export const MemberCard: FC<MemberCardProps> = (props) => {
     [navigate, net, netView, nodeId],
   );
 
-  if (!member) return <div className={clsx(root, status)} aria-hidden="true" />;
+  if (!member) {
+    return <div className={clsx(root, status)} aria-hidden="true" />;
+  }
 
   return (
     <div className={clsx(root, status)} onClick={handleClick} aria-hidden="true">
-      {photoUrl ? (
-        <div className={clsx(avatar, photo)}>
-          <img src={photoUrl} />
-        </div>
-      ) : (
-        <Icon icon="avatar" className={avatar} />
-      )}
+      <MemberAvatar photoUrl={photoUrl} />
       <div className={name}>{memberName}</div>
       <MemberStatus memberStatus={memberStatus} />
-      <MemberDislike nodeId={nodeId} memberStatus={memberStatus} dislike={dislike} />
       <MemberVote
         nodeId={nodeId}
         canVote={Boolean(memberPosition)}
@@ -55,6 +51,8 @@ export const MemberCard: FC<MemberCardProps> = (props) => {
         voteCount={voteCount}
         netView={netView}
       />
+      <MemberDislike nodeId={nodeId} memberStatus={memberStatus} dislike={dislike} />
+      <MemberAddress memberStatus={memberStatus} />
     </div>
   );
 };

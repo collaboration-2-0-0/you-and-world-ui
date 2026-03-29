@@ -12,7 +12,7 @@ export const useStyles = createUseStyles(
       textTransform: 'uppercase',
       cursor: 'pointer',
       '&:not(.text)': {
-        boxShadow: '6px 6px 6px 0px rgba(0, 0, 0, 0.2)',
+        boxShadow: vars.boxShadow.button,
       },
       '&:link, &:visited': {
         color: palette.font.light,

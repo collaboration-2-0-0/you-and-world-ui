@@ -1,10 +1,9 @@
 import { FC, useCallback, MouseEvent } from 'react';
-import clsx from 'clsx';
 import { NetViewEnum } from '@shared/types/api';
 import { useNavigateTo } from '@hooks/useNavigateTo';
 import { app } from '@app/app.provider';
-import { Icon } from '@components/icon/icon';
 import { MemberVote } from '../vote/member.vote';
+import { MemberAvatar } from '../avatar/avatar';
 import { useStyles } from './member.card.styles';
 
 interface NetUserCardProps {
@@ -12,13 +11,13 @@ interface NetUserCardProps {
 }
 
 export const UserCard: FC<NetUserCardProps> = (props) => {
-  const { root, avatar, photo, name: clsName } = useStyles();
+  const { root, name: clsName } = useStyles();
   const { userNet: net, user, userNetData, circle } = app.getState();
   const { node_id: nodeId, confirmed, vote, vote_count: voteCount } = userNetData!;
   const memberStatus = confirmed ? 'ACTIVE' : 'CONNECTED';
+  const navigate = useNavigateTo();
   const { netView } = props;
 
-  const navigate = useNavigateTo();
   const handleClick = useCallback(
     (e: MouseEvent) => {
       if (e.isDefaultPrevented()) return;
@@ -33,13 +32,7 @@ export const UserCard: FC<NetUserCardProps> = (props) => {
 
   return (
     <div className={root} onClick={handleClick} aria-hidden="true">
-      {photoUrl ? (
-        <div className={clsx(avatar, photo)}>
-          <img src={photoUrl} />
-        </div>
-      ) : (
-        <Icon icon="avatar" className={avatar} />
-      )}
+      <MemberAvatar photoUrl={photoUrl} />
       <div className={clsName}>{userName}</div>
       <MemberVote
         nodeId={nodeId}

@@ -2,38 +2,30 @@ import { createUseStyles } from 'react-jss';
 import { MEMBER_STATUS_ENUM } from '@client/constants';
 
 export const useStyles = createUseStyles(
-  ({ palette, vars, mixins }) => ({
+  ({ palette, vars }) => ({
     root: {
       display: 'grid',
       gridTemplate: `
-        "avatar name status"
-        "avatar name vote"
+        "avatar address status"
+        "avatar name dislike"
       `,
       gridTemplateColumns: '50px 1fr 80px',
       gridTemplateRows: '1fr 1fr',
       alignItems: 'center',
       padding: vars.gap.S,
-      color: palette.font.add,
+      color: palette.first.dark,
       border: `1px solid ${palette.first.light}`,
       borderRadius: vars.radius.S,
       background: palette.light.main,
       cursor: 'pointer',
       height: '100%',
-      gridGap: vars.gap.S,
-    },
-    avatar: {
-      gridArea: 'avatar',
-      ...mixins.size(54),
-      color: palette.first.extraLight,
-      borderRadius: 100,
-      overflow: 'hidden',
-    },
-    photo: {
-      border: `1px solid ${palette.first.main}`,
+      gridColumnGap: vars.gap.S,
+      gridRowGap: vars.gap.S,
     },
     name: {
       gridArea: 'name',
       fontWeight: vars.fontWeight.semiBold,
+      letterSpacing: 0.5,
     },
     [MEMBER_STATUS_ENUM.ACTIVE]: {},
     [MEMBER_STATUS_ENUM.CONNECTED]: {},
@@ -53,6 +45,7 @@ export const useStyles = createUseStyles(
       '& $name': {
         display: 'none',
       },
+      background: `${palette.first.main}05`,
     },
     [MEMBER_STATUS_ENUM.UNAVAILABLE]: {
       opacity: 0,

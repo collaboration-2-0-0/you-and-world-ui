@@ -87,8 +87,8 @@ const vars = {
   },
 
   boxShadow: {
-    box: '0 15px 20px rgba(0, 0, 0, 0.13)',
-    button: '0px 2px 4px rgba(0, 0, 0, 0.16)',
+    button: '6px 6px 6px 0px rgba(0, 0, 0, 0.2)',
+    smallButton: '3px 3px 3px 0px rgba(0, 0, 0, 0.2)',
   },
 
   letterGap: {

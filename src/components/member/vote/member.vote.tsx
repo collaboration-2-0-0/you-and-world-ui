@@ -2,9 +2,11 @@ import { FC, useCallback, MouseEvent } from 'react';
 import clsx from 'clsx';
 import { NetViewEnum, MemberStatusKeys } from '@shared/types/api';
 import { app } from '@app/app.provider';
+import { modalService } from '@services/modal.service';
+import { MessagesMap } from '@constants/messages';
 import { useStyles } from './member.vote.styles';
 
-interface MemberDislikeProps {
+interface MemberVoteProps {
   nodeId: number;
   memberStatus: MemberStatusKeys;
   canVote: boolean;
@@ -13,20 +15,29 @@ interface MemberDislikeProps {
   netView: NetViewEnum;
 }
 
-export const MemberVote: FC<MemberDislikeProps> = (props) => {
+export const MemberVote: FC<MemberVoteProps> = (props) => {
   const { nodeId, memberStatus, canVote, vote, voteCount, netView } = props;
   const { root, [memberStatus]: status } = useStyles();
+
+  const handleConfirm = useCallback(() => {
+    app.net.memberActions.setVote(nodeId).catch(() => {});
+  }, [nodeId]);
 
   const handleClick = useCallback(
     (e: MouseEvent) => {
       e.preventDefault();
-      !vote && app.net.memberActions.setVote(nodeId).catch(() => {});
-      vote && app.net.memberActions.unsetVote(nodeId).catch(() => {});
+      if (vote) {
+        app.net.memberActions.unsetVote(nodeId).catch(() => {});
+      } else {
+        modalService.showMessage(MessagesMap.MEMBER_VOTE, handleConfirm);
+      }
     },
-    [nodeId, vote],
+    [handleConfirm, nodeId, vote],
   );
 
-  if (netView === 'tree' || !canVote) return null;
+  if (netView === 'tree' || !canVote) {
+    return null;
+  }
 
   return (
     <div
@@ -34,7 +45,7 @@ export const MemberVote: FC<MemberDislikeProps> = (props) => {
       onClick={handleClick}
       aria-hidden="true"
     >
-      <span>ГОЛОСІВ: {voteCount}</span>
+      <span>{voteCount ? `ГОЛОСІВ: ${voteCount}` : 'ОБРАТИ'}</span>
     </div>
   );
 };

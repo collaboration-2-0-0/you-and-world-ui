@@ -8,7 +8,7 @@ export const useStyles = createUseStyles(
       ...mixins.size('100%'),
       ...mixins.flexCenter,
       color: palette.font.light,
-      border: '1px solid transparent',
+      border: '1px solid',
       borderRadius: vars.radius.S,
       fontSize: 14,
       fontWeight: vars.fontWeight.semiBold,
@@ -28,7 +28,7 @@ export const useStyles = createUseStyles(
       border: `1px solid ${palette.dark.main}`,
     },
     [MEMBER_STATUS_ENUM.EMPTY]: {
-      background: palette.dark.main,
+      color: `${palette.first.main}77`,
     },
   }),
   { name: 'MemberStatus' },
