@@ -10,7 +10,7 @@ export const CircleInfo: FC = () => {
   const userCountOfMembers = userNetData!.count_of_members;
 
   const count = {
-    title: 'Кількість учасників всього',
+    title: 'Всього',
     value: notEmpty ? circle[0].count_of_members : userCountOfMembers,
   };
 

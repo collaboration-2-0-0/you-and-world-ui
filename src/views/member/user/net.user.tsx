@@ -10,7 +10,7 @@ export const NetUser: FC = () => {
 
   return (
     <div className={root} aria-hidden="true">
-      <MemberTitle name={name} />
+      <MemberTitle name={name} photoUrl={user?.photo_url} />
       <div className={content}>Я</div>
     </div>
   );

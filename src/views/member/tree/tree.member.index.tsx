@@ -9,11 +9,14 @@ export const TreeMemberIndex: FC = () => {
   useTree();
   const { root, content } = useStyles();
   const member = useNetMember();
-  if (!member) return null;
+
+  if (!member) {
+    return null;
+  }
 
   return (
     <div className={root} aria-hidden="true">
-      <MemberTitle name={member.member_name} />
+      <MemberTitle name={member.member_name} photoUrl={member.photo_url} />
       <div className={content}>
         <Outlet key={Math.random()} />
       </div>

@@ -7,7 +7,7 @@ export const TreeInfo: FC = () => {
   const { userNetData, tree } = app.getState();
 
   const count = {
-    title: 'Кількість учасників всього',
+    title: 'Всього',
     value: userNetData!.count_of_members,
   };
 

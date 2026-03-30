@@ -1,14 +1,19 @@
 import { FC } from 'react';
-import { Icon } from '@components/icon/icon';
+import { MemberAvatar } from '../avatar/avatar';
 import { useStyles } from './member.title.styles';
 
-export const MemberTitle: FC<{ name: string }> = ({ name }) => {
-  const { root, avatar } = useStyles();
+interface MemberTitleProps {
+  name: string;
+  photoUrl?: string | null;
+}
+
+export const MemberTitle: FC<MemberTitleProps> = (props) => {
+  const { root } = useStyles();
+  const { photoUrl, name } = props;
 
   return (
     <div className={root}>
-      {/* <div className={avatar} /> */}
-      <Icon icon="avatar" className={avatar} />
+      <MemberAvatar photoUrl={photoUrl} />
       {name}
     </div>
   );

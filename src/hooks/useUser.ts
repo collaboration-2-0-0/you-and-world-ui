@@ -8,7 +8,9 @@ export const useUser = () => {
   const navigate = useNavigateTo();
 
   useEffect(() => {
-    if (!user) return;
+    if (!user) {
+      return;
+    }
     const pathname = localStorage.getItem('pathname');
     localStorage.removeItem('pathname');
     pathname && navigate.to(pathname);

@@ -50,6 +50,7 @@ export const useStyles = createUseStyles(
     [MEMBER_STATUS_ENUM.UNAVAILABLE]: {
       opacity: 0,
     },
+    avatar: {},
   }),
   { name: 'MemberCard' },
 );
