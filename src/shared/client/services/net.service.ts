@@ -98,11 +98,10 @@ export class NetService extends Store<NetState> {
 
   async create(args: Omit<T.INetCreateParams, 'node_id'>) {
     try {
-      const parentNet = this.$state.userNet;
+      const { userNet } = this.$state;
       const net = await this.app.api.net.create({
-        node_id: null,
-        ...parentNet,
-        ...args,
+        node_id: userNet ? userNet.node_id : null,
+        name: args.name,
       });
       if (net) await this.app.onNewNets();
       return net;
@@ -114,7 +113,8 @@ export class NetService extends Store<NetState> {
   async update(args: Omit<T.INetUpdateParams, 'node_id'>) {
     try {
       const { node_id } = this.$state.userNet!;
-      const net = await this.app.api.net.update({ ...args, node_id });
+      const { goal, rules } = args;
+      const net = await this.app.api.net.update({ node_id, goal, rules });
       net && this.setState({ userNet: net });
       return net;
     } catch (e: any) {
@@ -158,8 +158,8 @@ export class NetService extends Store<NetState> {
 
   async leave() {
     try {
-      const net = this.$state.userNet;
-      const success = await this.app.api.net.leave(net!);
+      const { node_id } = this.$state.userNet!;
+      const success = await this.app.api.net.leave({ node_id });
       if (success) {
         await this.setNet();
         await this.app.onNewNets();
@@ -171,8 +171,8 @@ export class NetService extends Store<NetState> {
   }
 
   async getCircle() {
-    const net = this.$state.userNet;
-    const result = await this.app.api.net.getCircle(net!);
+    const { node_id } = this.$state.userNet!;
+    const result = await this.app.api.net.getCircle({ node_id });
     const circle: IMember[] = result.map((member, memberPosition) => {
       const memberStatus = getMemberStatus(member);
       const memberName = this.getName('circle', member, memberPosition);
@@ -182,8 +182,8 @@ export class NetService extends Store<NetState> {
   }
 
   async getTree() {
-    const net = this.$state.userNet;
-    const result = await this.app.api.net.getTree(net!);
+    const { node_id } = this.$state.userNet!;
+    const result = await this.app.api.net.getTree({ node_id });
     const tree: IMember[] = result.map((member, memberPosition) => {
       const memberStatus = getMemberStatus(member);
       const memberName = this.getName('tree', member, memberPosition);

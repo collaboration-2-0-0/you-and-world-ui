@@ -19,11 +19,13 @@ export class Member extends Store {
 
   async createInvite(args: Pick<T.IMemberInviteParams, 'member_name'>) {
     try {
-      const { userNet: net } = this.net.state;
+      const { member_name } = args;
+      const { node_id } = this.net.state.userNet!;
+      const { node_id: member_id } = this.member;
       const token = await this.app.api.member.invite.create({
-        ...args,
-        member_id: this.member.node_id,
-        ...net!,
+        member_name,
+        member_id,
+        node_id,
       });
       if (token) await this.net.onMemberChanged();
       return token;
@@ -34,10 +36,11 @@ export class Member extends Store {
 
   async inviteCancel() {
     try {
-      const { userNet: net } = this.app.getState();
+      const { node_id } = this.net.state.userNet!;
+      const { node_id: member_id } = this.member;
       const success = await this.app.api.member.invite.cancel({
-        member_id: this.member.node_id,
-        ...net!,
+        member_id,
+        node_id,
       });
       if (success) await this.net.onMemberChanged();
       return success;
@@ -64,10 +67,11 @@ export class Member extends Store {
 
   async inviteRefuse() {
     try {
-      const { userNet: net } = this.app.getState();
+      const { node_id } = this.net.state.userNet!;
+      const { node_id: member_id } = this.member;
       const success = await this.app.api.member.invite.refuse({
-        member_id: this.member.node_id,
-        ...net!,
+        member_id,
+        node_id,
       });
       if (success) await this.net.onMemberChanged();
       return success;
