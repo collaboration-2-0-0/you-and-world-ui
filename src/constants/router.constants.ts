@@ -8,6 +8,7 @@ export const RelativeRoutesMap = {
     INDEX: 'account',
     WAIT: 'wait',
   },
+  NET_VIEW: 'net_view',
   // SUBSCRIPTION: 'subscription',
   NET: {
     INDEX: 'net',
