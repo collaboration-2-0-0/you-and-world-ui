@@ -32,7 +32,7 @@ export const MdContentEdit: FC<MdContentEditProps> = (props) => {
   if (!editable) {
     return (
       <div className={root}>
-        <MdContent content={formikProps.value} className={text} />;
+        <MdContent content={formikProps.value} className={text} />
       </div>
     );
   }
