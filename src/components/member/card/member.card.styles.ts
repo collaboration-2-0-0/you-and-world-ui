@@ -6,8 +6,8 @@ export const useStyles = createUseStyles(
     root: {
       display: 'grid',
       gridTemplate: `
-        "avatar address status"
-        "avatar name dislike"
+        "avatar name status"
+        "avatar address dislike"
       `,
       gridTemplateColumns: '50px 1fr 80px',
       gridTemplateRows: '1fr 1fr',
@@ -27,6 +27,10 @@ export const useStyles = createUseStyles(
       fontWeight: vars.fontWeight.semiBold,
       letterSpacing: 0.5,
     },
+    address: {
+      gridArea: 'address',
+      color: `${palette.add.main}aa`,
+    },
     [MEMBER_STATUS_ENUM.ACTIVE]: {},
     [MEMBER_STATUS_ENUM.CONNECTED]: {},
     [MEMBER_STATUS_ENUM.INVITED]: {},
@@ -44,6 +48,9 @@ export const useStyles = createUseStyles(
       },
       '& $name': {
         display: 'none',
+      },
+      '& $address': {
+        color: `${palette.first.main}77`,
       },
       background: `${palette.first.main}05`,
     },

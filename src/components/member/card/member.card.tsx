@@ -16,13 +16,14 @@ export const MemberCard: FC<MemberCardProps> = (props) => {
   const {
     node_id: nodeId,
     member_name: memberName,
+    node_address,
     photo_url: photoUrl,
     memberStatus = 'UNAVAILABLE',
     dislike,
     vote,
     vote_count: voteCount,
   } = member || {};
-  const { root, name, [memberStatus]: status, avatar } = useStyles();
+  const { root, name, [memberStatus]: status, avatar, address } = useStyles();
   const { netView } = props;
 
   const handleClick = useCallback(
@@ -41,6 +42,7 @@ export const MemberCard: FC<MemberCardProps> = (props) => {
   return (
     <div className={clsx(root, status)} onClick={handleClick} aria-hidden="true">
       <MemberAvatar photoUrl={photoUrl} className={avatar} />
+      <div className={address}>{node_address}</div>
       <div className={name}>{memberName}</div>
       <MemberStatus memberStatus={memberStatus} />
       <MemberVote
