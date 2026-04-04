@@ -27,16 +27,23 @@ const showError = (statusCode: HttpResponseErrorCode) =>
 export const ErrorCatch: FC = () => {
   const apiError = useApiError();
   const { status, error: appError } = app.useStatus(['status', 'error']);
-  const isReady = status === 'READY' || appError;
+  const isReady = status === 'READY';
   const navigate = useNavigateTo();
 
   useEffect(() => {
-    const error = apiError || appError;
-    if (!error) {
+    if (appError) {
+      const { message } = (appError.cause as any) || appError;
+      modalService.showError(message || 'Unknown error');
       return;
     }
 
+    if (!apiError) {
+      return;
+    }
+
+    const error = apiError;
     let statusCode = httpResponseErrorEnum.InternalServerError;
+
     if (isHttpResponseError(error)) {
       statusCode = error.statusCode;
     }
@@ -53,7 +60,9 @@ export const ErrorCatch: FC = () => {
   }, [apiError, appError, navigate]);
 
   if (!isHttpResponseError(apiError)) return null;
-  if (apiError.statusCode === httpResponseErrorEnum.NotFound && isReady) return <NotFound />;
+  if (apiError.statusCode === httpResponseErrorEnum.NotFound && (isReady || appError)) {
+    return <NotFound />;
+  }
 
   return null;
 };

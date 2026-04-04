@@ -26,7 +26,7 @@ export const MessagesMap = {
   MEMBER_CONFIRMED: 'Запрошення підтверджено',
   MEMBER_CONFIRM_FAIL: 'Не вдалося підтвердити запрошення',
   MEMBER_VOTE: 'Підтримати?',
-  MEMBER_DISLIKE: "Від'єднати?",
+  MEMBER_DISLIKE: 'Виразити недовіру?',
   WAIT_CREATED: 'Запит на вхід до спільноти успішно створено',
   WAIT_EXISTS: 'Ви вже створили запит на вхід до цієї спільноти або вже є її учасником',
   WAIT_REMOVED: 'Запит на вхід до спільноти скасовано',

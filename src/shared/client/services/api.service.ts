@@ -1,5 +1,5 @@
 import { getApi, IClientApi } from '@shared/server/client.api';
-import { API_URL } from '@client/envs';
+import { API_URL, IS_DEV } from '@client/envs';
 import { Store } from '@client/lib/store/store';
 import { HttpResponseError } from '@client/connection/errors';
 import { getConnection as getHttpConnection } from '@client/connection/http';
@@ -41,12 +41,12 @@ export class Api extends Store {
 
   getConnection(transport: 'http' | 'ws' = 'http') {
     if (transport === 'http') {
-      const connection = getHttpConnection(this.baseUrl);
+      const connection = getHttpConnection(this.baseUrl, IS_DEV);
       return this.interceptor(connection);
     }
 
     const baseUrl = this.baseUrl.replace('http', 'ws');
-    const connection = getWsConnection(baseUrl, this.onConnect, this.onMessage);
+    const connection = getWsConnection(baseUrl, this.onConnect, this.onMessage, IS_DEV);
     return this.interceptor(connection);
   }
 

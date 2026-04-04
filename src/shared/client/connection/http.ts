@@ -2,9 +2,9 @@ import { logData } from './utils';
 import { HttpResponseErrorCode, HttpResponseError } from './errors';
 
 export const getConnection =
-  (baseUrl: string) =>
+  (baseUrl: string, showLogs = false) =>
   async (url: string, data: Record<string, any> = {}) => {
-    logData(data, 'REQ');
+    showLogs && logData(data, 'REQ');
     const options: RequestInit = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -16,7 +16,7 @@ export const getConnection =
       const { ok, status } = response;
       if (!ok) throw new HttpResponseError(status as HttpResponseErrorCode);
       const responseData = await response.json();
-      logData(responseData, 'RES');
+      showLogs && logData(responseData, 'RES');
       return responseData;
     } catch (e) {
       console.log(e);

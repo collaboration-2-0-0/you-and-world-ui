@@ -18,7 +18,10 @@ class WsConnection extends EventEmitter {
   private id = 0;
   private requests: Map<number, (response: IWsResponse) => void>;
 
-  constructor(private baseUrl: string) {
+  constructor(
+    private baseUrl: string,
+    private showLogs: boolean,
+  ) {
     super();
     this.handleOpen = this.handleOpen.bind(this);
     this.handleError = this.handleError.bind(this);
@@ -98,18 +101,18 @@ class WsConnection extends EventEmitter {
     const response = JSON.parse(message as string) as IWsResponse;
     const { requestId: reqId, data } = response;
     if (!reqId) return this.emit('message', data);
-    logData(response, 'RES');
+    this.showLogs && logData(response, 'RES');
     const handleResponse = this.requests.get(reqId);
     if (!handleResponse) return;
     this.requests.delete(reqId);
     handleResponse(response);
   }
 
-  async sendRequest(pathname: string, data: Record<string, any> = {}, doLog = true): Promise<any> {
+  async sendRequest(pathname: string, data: Record<string, any> = {}): Promise<any> {
     await this.checkConnection();
     const requestId = this.genId();
     const request = { requestId, pathname, data };
-    if (doLog) logData(request, 'REQ');
+    this.showLogs && logData(request, 'REQ');
     const message = JSON.stringify(request);
     const requestExecutor = this.createRequestExecutor(message);
     return new Promise(requestExecutor);
@@ -146,8 +149,9 @@ export const getConnection = (
   baseUrl: string,
   onConnection: () => void,
   onMessage: (data: any) => void,
+  showLogs = false,
 ): TRpc => {
-  const connection = new WsConnection(baseUrl);
+  const connection = new WsConnection(baseUrl, showLogs);
   connection.on('connection', onConnection);
   connection.on('message', onMessage);
   return connection.sendRequest;
