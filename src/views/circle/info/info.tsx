@@ -1,13 +1,13 @@
 import { FC } from 'react';
-import { FormContainer } from '@components/containers/form.container';
 import { app } from '@app/app.provider';
+import { FormContainer } from '@components/containers/form.container';
 import { Table } from '@components/table/table';
 
 export const CircleInfo: FC = () => {
-  const { userNetData, circle } = app.getState();
+  const { userNet, circle } = app.getState();
 
   const notEmpty = circle.length;
-  const userCountOfMembers = userNetData!.count_of_members;
+  const userCountOfMembers = userNet!.count_of_members;
 
   const count = {
     title: 'Всього',

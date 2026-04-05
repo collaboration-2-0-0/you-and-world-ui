@@ -4,16 +4,16 @@ import { app } from '@app/app.provider';
 import { Table } from '@components/table/table';
 
 export const TreeInfo: FC = () => {
-  const { userNetData, tree } = app.getState();
+  const { userNet, tree } = app.net.state;
 
   const count = {
     title: 'Всього',
-    value: userNetData!.count_of_members,
+    value: userNet!.count_of_members,
   };
 
   const data = tree
     .filter(({ memberStatus }) => memberStatus === 'ACTIVE')
-    .map(({ member_name: title, count_of_members: v }) => ({ title, value: v }));
+    .map(({ member_name: title, count_of_members: value }) => ({ title, value }));
 
   const items = [count, ...data];
 

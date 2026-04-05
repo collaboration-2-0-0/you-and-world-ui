@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { RoutesMap } from '@constants/router.constants';
 import { useMatchParam } from '@utils/utils';
 import { app } from '@app/app.provider';
@@ -9,21 +9,15 @@ const path = {
 };
 
 export const useNetMember = () => {
-  const setRerender = useState([])[1];
-  const { member, netView } = app.getState();
+  const { member, netView } = app.net.useState(['member', 'netView']);
   const memberData = member?.getMember();
-  const { node_id: curNodeId } = memberData || {};
   const nodeId = useMatchParam('node_id', path[netView!], false) as number;
-  const loaded = curNodeId === nodeId;
 
   useEffect(() => {
-    if (loaded) {
-      return;
+    if (nodeId) {
+      app.net.findMember(nodeId);
     }
-    app.net.findMember(nodeId);
-    setRerender([]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loaded]);
+  }, [nodeId]);
 
-  return loaded && memberData;
+  return memberData;
 };

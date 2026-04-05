@@ -52,12 +52,36 @@ export class NetService extends Store<NetState> {
   }
 
   findMember(nodeId: number) {
+    const { userNet, userNetData } = this.$state;
+
+    if (nodeId === userNet!.node_id) {
+      const { user } = this.app.account.state;
+      const member = new Member(
+        {
+          ...user!,
+          ...userNet!,
+          ...userNetData!,
+          memberStatus: userNetData!.confirmed ? 'ACTIVE' : 'CONNECTED',
+          member_name: user!.name || 'Я',
+          token: '',
+        },
+        this.app,
+        this,
+      );
+
+      return this.setState({ member });
+    }
+
     const { netView } = this.state;
     const { [netView!]: netViewData } = this.state;
     const memberPosition = netViewData.findIndex((item) => item.node_id === nodeId);
     const member = netViewData[memberPosition];
-    if (member) this.setState({ member: new Member(member, this.app, this) });
-    else this.setError(new HttpResponseError(404));
+
+    if (member) {
+      this.setState({ member: new Member(member, this.app, this) });
+    } else {
+      this.setError(new HttpResponseError(404));
+    }
   }
 
   private async setNet(userNet: T.INetResponse = null) {

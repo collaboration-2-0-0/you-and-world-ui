@@ -4,13 +4,17 @@ import { Store } from '../lib/store/store';
 import { App } from '../app';
 import { NetService } from './net.service';
 
-export class Member extends Store {
+interface MemberState {
+  info: T.IMemberInfoRes;
+}
+
+export class Member extends Store<MemberState> {
   constructor(
     private member: IMember,
     private app: App,
     private net: NetService,
   ) {
-    super({});
+    super({ info: null });
   }
 
   getMember() {
@@ -76,6 +80,31 @@ export class Member extends Store {
       if (success) await this.net.onMemberChanged();
       return success;
     } catch (e: any) {
+      this.setError(e);
+      throw e;
+    }
+  }
+
+  async getInfo() {
+    try {
+      const { node_id } = this.net.state.userNet!;
+      const { node_id: member_id } = this.member;
+      const info = await this.app.api.member.info.read({ node_id, member_id });
+      this.setState({ info });
+    } catch (e) {
+      this.setError(e);
+      throw e;
+    }
+  }
+
+  /* only for user node */
+  async updateInfo(newInfo: Omit<T.IMemberInfoReq, 'node_id'>) {
+    try {
+      const { node_id } = this.net.state.userNet!;
+      const info = await this.app.api.member.info.update({ ...newInfo, node_id });
+      this.setState({ info });
+      return info;
+    } catch (e) {
       this.setError(e);
       throw e;
     }

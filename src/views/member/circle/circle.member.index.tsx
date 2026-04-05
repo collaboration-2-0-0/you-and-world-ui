@@ -15,7 +15,7 @@ export const CircleMemberIndex: FC = () => {
   }
 
   return (
-    <div className={root} aria-hidden="true">
+    <div className={root}>
       <MemberTitle name={member.member_name} photoUrl={member.photo_url} />
       <div className={content}>
         <Outlet key={Math.random()} />

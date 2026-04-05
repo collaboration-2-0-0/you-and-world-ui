@@ -7,9 +7,8 @@ import { EventStore } from '@client/services/event.store.class';
 import { modalService } from '@services/modal.service';
 
 export const useEvents = (netView?: NetViewKeys) => {
-  const { userNet: net } = app.getState();
+  const { userNet: net } = app.net.useState(['userNet']);
   const [eventStoreEvents, setEventStoreEvents] = useState<IEvents>([]);
-
   const { netEvents } = app.userEvents.useState(['netEvents']);
   const currentEvent = useRef<IEvent | null>(null);
   const netId = netView ? net?.net_id : 0;
@@ -25,22 +24,29 @@ export const useEvents = (netView?: NetViewKeys) => {
     [netId],
   );
 
+  const handleClose = useCallback((event: IEvent) => {
+    currentEvent.current = null;
+    app.userEvents.confirm(event).catch(() => {});
+  }, []);
+
   useEffect(() => {
     handleEvents(app.getState().events);
   }, [handleEvents, netEvents]);
 
   useEffect(() => {
-    if (currentEvent.current) return;
+    if (currentEvent.current) {
+      return;
+    }
     const [event] = eventStoreEvents;
-    if (!event) return;
+    if (!event) {
+      return;
+    }
+
     currentEvent.current = event;
     const { message } = event;
-    const handleClose = () => {
-      currentEvent.current = null;
-      app.userEvents.confirm(event).catch(() => {});
-    };
-    modalService.showMessage(message, undefined, undefined, handleClose);
-  }, [eventStoreEvents]);
+
+    modalService.showMessage(message, undefined, undefined, () => handleClose(event));
+  }, [eventStoreEvents, handleClose]);
 
   return null;
 };

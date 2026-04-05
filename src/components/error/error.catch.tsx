@@ -31,23 +31,18 @@ export const ErrorCatch: FC = () => {
   const navigate = useNavigateTo();
 
   useEffect(() => {
-    if (appError) {
-      const { message } = (appError.cause as any) || appError;
+    const error = apiError || (appError?.cause as Error) || appError;
+    if (!error) {
+      return;
+    }
+
+    if (!isHttpResponseError(error)) {
+      const { message } = (error.cause as any) || error;
       modalService.showError(message || 'Unknown error');
       return;
     }
 
-    if (!apiError) {
-      return;
-    }
-
-    const error = apiError;
-    let statusCode = httpResponseErrorEnum.InternalServerError;
-
-    if (isHttpResponseError(error)) {
-      statusCode = error.statusCode;
-    }
-
+    const statusCode = error.statusCode || httpResponseErrorEnum.InternalServerError;
     if (statusCode === httpResponseErrorEnum.NotFound) {
       return;
     }

@@ -12,13 +12,12 @@ const showFail = () => modalService.showError('FAIL');
 
 const NetGoal: FC = () => {
   const { submitForm, values, errors } = useFormikContext<NetGoalFormValues>();
-  const { userNetData, userNet } = app.getState();
-
-  const { parent_node_id: parentNodeId } = userNetData!;
-  const editable = parentNodeId === null;
+  const { userNet } = app.net.state;
+  const { parent_node_id, goal } = userNet!;
+  const editable = parent_node_id === null;
 
   const handleSubmit = () => {
-    const changed = userNet!.goal !== values[NetGoalField.GOAL];
+    const changed = goal !== values[NetGoalField.GOAL];
     if (changed) {
       submitForm().catch(() => null);
     }
@@ -35,19 +34,21 @@ const NetGoal: FC = () => {
 };
 
 export const NetGoalForm = () => {
-  const { userNet: net } = app.getState();
-  const { goal } = net!;
+  const { userNet: net } = app.net.state;
 
   return (
     <FormikProvider
-      initialValues={{ goal: goal || '' }}
+      initialValues={{ goal: net!.goal || '' }}
       validationSchema={NetGoalSchema}
       onSubmit={async (values) => {
         await app.net
           .update(values)
           .then((newNet) => {
-            if (!newNet) return showFail();
-            showSuccess();
+            if (newNet) {
+              showSuccess();
+            } else {
+              showFail();
+            }
           })
           .catch(() => null);
       }}

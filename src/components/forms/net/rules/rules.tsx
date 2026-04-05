@@ -12,11 +12,12 @@ const showFail = () => modalService.showError('FAIL');
 
 const NetRules: FC = () => {
   const { submitForm, values, errors } = useFormikContext<NetRulesFormValues>();
-  const { userNetData, userNet } = app.getState();
-  const editable = userNetData?.parent_node_id === null;
+  const { userNet: net } = app.net.state;
+  const { parent_node_id, rules } = net!;
+  const editable = parent_node_id === null;
 
   const handleSubmit = () => {
-    const changed = userNet!.rules !== values[NetRulesField.RULES];
+    const changed = rules !== values[NetRulesField.RULES];
     if (changed) {
       submitForm().catch(() => null);
     }
@@ -34,11 +35,10 @@ const NetRules: FC = () => {
 
 export const NetRulesForm = () => {
   const { userNet: net } = app.getState();
-  const { rules } = net!;
 
   return (
     <FormikProvider
-      initialValues={{ rules: rules || '' }}
+      initialValues={{ rules: net!.rules || '' }}
       validationSchema={NetRulesSchema}
       onSubmit={async (values) => {
         await app.net
