@@ -7,7 +7,7 @@ import { useStyles } from '../member.styles';
 
 export const CircleMemberIndex: FC = () => {
   useCircle();
-  const { root, content } = useStyles();
+  const { root } = useStyles();
   const member = useNetMember();
 
   if (!member) {
@@ -17,9 +17,7 @@ export const CircleMemberIndex: FC = () => {
   return (
     <div className={root}>
       <MemberTitle name={member.member_name} photoUrl={member.photo_url} />
-      <div className={content}>
-        <Outlet key={Math.random()} />
-      </div>
+      <Outlet />
     </div>
   );
 };

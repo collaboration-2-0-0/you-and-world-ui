@@ -1,9 +1,8 @@
 import { FC, useEffect } from 'react';
 import { app } from '@components/app/app.provider';
 import { useUser } from '@hooks/useUser';
-import { useMemberInfo } from '@hooks/useMemberInfo';
 import { MemberTitle } from '@components/member/title/member.title';
-import { MemberInfoForm } from '@components/forms/member/info/info';
+import { MemberInfoAll } from '@components/member/info/member.info';
 import { useStyles } from '../member.styles';
 
 export const NetUser: FC = () => {
@@ -13,7 +12,6 @@ export const NetUser: FC = () => {
 
   const { userNet } = app.net.useState(['userNet']);
   const { node_id } = userNet || {};
-  const member = useMemberInfo();
 
   useEffect(() => {
     if (node_id) {
@@ -24,7 +22,7 @@ export const NetUser: FC = () => {
   return (
     <div className={root}>
       <MemberTitle name={name} photoUrl={user?.photo_url} />
-      {member && <MemberInfoForm member={member} />}
+      <MemberInfoAll />;
     </div>
   );
 };

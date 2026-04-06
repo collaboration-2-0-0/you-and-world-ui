@@ -14,9 +14,6 @@ export const useStyles = createUseStyles(
     },
     title: {
       fontWeight: vars.fontWeight.semiBold,
-      // position: 'relative',
-      // left: '50%',
-      // transform: 'translateX(-50%)',
 
       display: 'flex',
       '& button': {

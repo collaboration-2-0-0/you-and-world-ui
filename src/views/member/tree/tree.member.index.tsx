@@ -5,7 +5,7 @@ import { MemberTitle } from '@components/member/title/member.title';
 import { useStyles } from '../member.styles';
 
 export const TreeMemberIndex: FC = () => {
-  const { root, content } = useStyles();
+  const { root } = useStyles();
   const member = useNetMember();
 
   if (!member) {
@@ -15,9 +15,7 @@ export const TreeMemberIndex: FC = () => {
   return (
     <div className={root}>
       <MemberTitle name={member.member_name} photoUrl={member.photo_url} />
-      <div className={content}>
-        <Outlet key={Math.random()} />
-      </div>
+      <Outlet />
     </div>
   );
 };

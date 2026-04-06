@@ -8,10 +8,6 @@ export const useStyles = createUseStyles(
       flexDirection: 'column',
       gap: vars.gap.L,
     },
-    content: {
-      flex: '1 0 0',
-      marginTop: 60,
-    },
   }),
   { name: 'Member' },
 );

@@ -19,5 +19,5 @@ export const useNetMember = () => {
     }
   }, [nodeId]);
 
-  return memberData;
+  return nodeId === memberData?.node_id ? memberData : null;
 };

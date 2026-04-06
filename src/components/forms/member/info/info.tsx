@@ -1,19 +1,17 @@
 import { FC, useEffect, useRef } from 'react';
 import { Formik, useFormikContext } from 'formik';
 import { MessagesMap } from '@constants/messages';
-import { Member } from '@shared/client/services/member.service';
 import { app } from '@components/app/app.provider';
+import { Member } from '@shared/client/services/member.service';
 import { modalService } from '@services/modal.service';
 import { MdContentEdit } from '@components/controls/md-content-edit/md.content.edit';
-import { MemberInfoField, MemberInfoFormValues, MemberInfoSchema } from './info.schema';
-import { useStyles } from './info.styles';
+import { MemberInfoField, MemberInfoFormValues, MemberInfoSchema } from './info.types';
 
 const FormikProvider = Formik<MemberInfoFormValues>;
 const showSuccess = () => modalService.showMessage(MessagesMap.SUCCESS);
 const showFail = () => modalService.showError('FAIL');
 
-const MemberInfo: FC<MemberInfoFormProps> = ({ member }) => {
-  const { root } = useStyles();
+const MemberInfo: FC<MemberInfoFormProps> = ({ member, field }) => {
   const { submitForm, values, errors } = useFormikContext<MemberInfoFormValues>();
   const { userNet } = app.getState();
   const editable = member.getMember().node_id === userNet?.node_id;
@@ -40,37 +38,15 @@ const MemberInfo: FC<MemberInfoFormProps> = ({ member }) => {
     }
   }, [errors]);
 
-  return (
-    <div className={root}>
-      <MdContentEdit
-        name={MemberInfoField.MEMBER_DESIRE}
-        onEditEnd={handleSubmit}
-        editable={editable}
-      />
-      <MdContentEdit
-        name={MemberInfoField.MEMBER_GOAL}
-        onEditEnd={handleSubmit}
-        editable={editable}
-      />
-      <MdContentEdit
-        name={MemberInfoField.MEMBER_ACTIVITY}
-        onEditEnd={handleSubmit}
-        editable={editable}
-      />
-      <MdContentEdit
-        name={MemberInfoField.MEMBER_ROLE}
-        onEditEnd={handleSubmit}
-        editable={editable}
-      />
-    </div>
-  );
+  return <MdContentEdit name={field} onEditEnd={handleSubmit} editable={editable} />;
 };
 
 interface MemberInfoFormProps {
   member: Member;
+  field: MemberInfoField;
 }
 
-export const MemberInfoForm: FC<MemberInfoFormProps> = ({ member }) => {
+export const MemberInfoForm: FC<MemberInfoFormProps> = ({ field, member }) => {
   const { info } = member.useState(['info']);
 
   if (!info) {
@@ -79,7 +55,7 @@ export const MemberInfoForm: FC<MemberInfoFormProps> = ({ member }) => {
 
   return (
     <FormikProvider
-      initialValues={{ ...info }}
+      initialValues={{ [field]: info[field], member_id: info.member_id }}
       validationSchema={MemberInfoSchema}
       onSubmit={(values) => {
         console.log({ submit: true });
@@ -89,7 +65,7 @@ export const MemberInfoForm: FC<MemberInfoFormProps> = ({ member }) => {
           .catch(() => {});
       }}
     >
-      <MemberInfo member={member} />
+      <MemberInfo member={member} field={field} />
     </FormikProvider>
   );
 };
