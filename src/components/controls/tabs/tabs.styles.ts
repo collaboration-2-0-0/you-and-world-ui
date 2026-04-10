@@ -10,6 +10,7 @@ export const useStyles = createUseStyles(
       '& button': {
         border: '1px solid',
         borderColor: palette.light.main,
+        borderRadius: vars.gap.SS,
       },
       '& button:not(.active)': {
         paddingRight: vars.gap.S,

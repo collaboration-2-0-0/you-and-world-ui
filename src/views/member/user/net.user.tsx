@@ -22,7 +22,7 @@ export const NetUser: FC = () => {
   return (
     <div className={root}>
       <MemberTitle name={name} photoUrl={user?.photo_url} />
-      <MemberInfoAll />;
+      <MemberInfoAll />
     </div>
   );
 };

@@ -28,7 +28,7 @@ const NetGoal: FC = () => {
     if (error) {
       modalService.showError(`${error}`);
     }
-  }, [errors]);
+  }, [values, errors]);
 
   return <MdContentEdit name={NetGoalField.GOAL} onEditEnd={handleSubmit} editable={editable} />;
 };

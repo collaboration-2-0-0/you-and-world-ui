@@ -11,8 +11,10 @@ export const MemberInfoAll: FC = () => {
     return null;
   }
 
+  const { node_id } = member.getMember();
+
   return (
-    <Tabs tabNames={['Бажання', 'Мета', 'Діяльність', 'Роль']}>
+    <Tabs key={node_id} tabNames={['Бажання', 'Мета', 'Діяльність', 'Роль']}>
       <MemberInfoForm member={member} field={MemberInfoField.MEMBER_DESIRE} />
       <MemberInfoForm member={member} field={MemberInfoField.MEMBER_GOAL} />
       <MemberInfoForm member={member} field={MemberInfoField.MEMBER_ACTIVITY} />

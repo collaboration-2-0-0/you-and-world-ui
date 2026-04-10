@@ -28,7 +28,7 @@ const NetRules: FC = () => {
     if (error) {
       modalService.showError(`${error}`);
     }
-  }, [errors]);
+  }, [values, errors]);
 
   return <MdContentEdit name={NetRulesField.RULES} onEditEnd={handleSubmit} editable={editable} />;
 };

@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from 'react';
+import { FC, useEffect } from 'react';
 import { Formik, useFormikContext } from 'formik';
 import { MessagesMap } from '@constants/messages';
 import { app } from '@components/app/app.provider';
@@ -15,28 +15,18 @@ const MemberInfo: FC<MemberInfoFormProps> = ({ member, field }) => {
   const { submitForm, values, errors } = useFormikContext<MemberInfoFormValues>();
   const { userNet } = app.getState();
   const editable = member.getMember().node_id === userNet?.node_id;
-  const initValues = useRef<MemberInfoFormValues>(values);
 
   const handleSubmit = () => {
-    for (const [key, value] of Object.entries(values)) {
-      if (initValues.current[key as MemberInfoField] === value) {
-        continue;
-      }
-
-      submitForm()
-        .then(() => (initValues.current = values))
-        .catch(() => null);
-
-      return;
-    }
+    submitForm().catch(() => null);
   };
 
   useEffect(() => {
     const [error] = [...Object.values<string>(errors)];
     if (error) {
+      modalService.closeModal();
       modalService.showError(`${error}`);
     }
-  }, [errors]);
+  }, [values, errors]);
 
   return <MdContentEdit name={field} onEditEnd={handleSubmit} editable={editable} />;
 };
@@ -58,7 +48,12 @@ export const MemberInfoForm: FC<MemberInfoFormProps> = ({ field, member }) => {
       initialValues={{ [field]: info[field], member_id: info.member_id }}
       validationSchema={MemberInfoSchema}
       onSubmit={(values) => {
-        console.log({ submit: true });
+        for (const [key, value] of Object.entries(values)) {
+          if (info[key as MemberInfoField] !== value) {
+            break;
+          }
+          return;
+        }
         member
           .updateInfo(values)
           .then((info) => (info ? showSuccess() : showFail()))

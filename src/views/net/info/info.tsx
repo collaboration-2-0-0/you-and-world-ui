@@ -1,15 +1,16 @@
 import { FC } from 'react';
-import { FormContainer } from '@components/containers/form.container';
+import { MessagesMap } from '@constants/messages';
+import { RoutesMap } from '@constants/router.constants';
 import { app } from '@app/app.provider';
+import { handleCopy } from '@utils/utils';
+import { makeTgUrl } from '@utils/format.utils';
+import { modalService } from '@services/modal.service';
+import { FormContainer } from '@components/containers/form.container';
 import { Table } from '@components/table/table';
 import { InputSimple } from '@components/controls/input/input.simple';
-import { handleCopy } from '@utils/utils';
-import { useStyles } from './info.styles';
-import { makeTgUrl } from '@utils/format.utils';
-import { RoutesMap } from '@constants/router.constants';
 import { Button } from '@components/buttons/button/button';
-import { modalService } from '@services/modal.service';
-import { MessagesMap } from '@constants/messages';
+import { NetNameForm } from '@components/forms/net/name/name';
+import { useStyles } from './info.styles';
 
 const { CREATE: waitCreatePath } = RoutesMap.NET.WAIT;
 
@@ -17,7 +18,7 @@ const showCopySuccess = () => modalService.showMessage(MessagesMap.MEMBER_INVITE
 const showCopyFail = () => modalService.showMessage(MessagesMap.MEMBER_INVITE_COPY_FAIL);
 
 export const NetInfo: FC = () => {
-  const { buttons, link } = useStyles();
+  const { buttons, netName, link } = useStyles();
   const { userNet: net, bot } = app.getState();
   const url = makeTgUrl(waitCreatePath, net?.net_link || '', bot);
 
@@ -31,8 +32,11 @@ export const NetInfo: FC = () => {
   return (
     <FormContainer title="Інформація про спільноту">
       <Table items={items} />
+      <div className={netName}>
+        <NetNameForm />
+      </div>
       <div className={link}>
-        <InputSimple label="Запрошення" defaultValue={url} contentEditable={false} />
+        <InputSimple label="Запрошення" defaultValue={url} disabled />
         <div className={buttons}>
           <Button btnType="telegram" onClick={() => handleCopy(url, showCopySuccess, showCopyFail)}>
             копіювати

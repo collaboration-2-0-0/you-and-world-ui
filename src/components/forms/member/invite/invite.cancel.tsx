@@ -30,7 +30,7 @@ export const MemberInviteCancelForm: FC = () => {
 
   return (
     <>
-      <InputSimple label="Запрошення" defaultValue={inviteUrl} contentEditable={false} />
+      <InputSimple label="Запрошення" defaultValue={inviteUrl} disabled />
       <div className={buttons}>
         <Button
           btnType="primary"
