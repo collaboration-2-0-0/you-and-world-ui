@@ -137,8 +137,7 @@ export class NetService extends Store<NetState> {
   async update(args: Omit<T.INetUpdateParams, 'node_id'>) {
     try {
       const { node_id } = this.$state.userNet!;
-      const { goal, rules } = args;
-      const net = await this.app.api.net.update({ node_id, goal, rules });
+      const net = await this.app.api.net.update({ node_id, ...args });
       net && this.setState({ userNet: net });
       return net;
     } catch (e: any) {

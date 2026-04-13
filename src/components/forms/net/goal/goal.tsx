@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { Formik, useFormikContext } from 'formik';
 import { MessagesMap } from '@constants/messages';
 import { modalService } from '@services/modal.service';
@@ -19,16 +19,14 @@ const NetGoal: FC = () => {
   const handleSubmit = () => {
     const changed = goal !== values[NetGoalField.GOAL];
     if (changed) {
-      submitForm().catch(() => null);
+      const error = errors[NetGoalField.GOAL];
+      if (error) {
+        modalService.showError(`${error}`);
+      } else {
+        submitForm().catch(() => null);
+      }
     }
   };
-
-  useEffect(() => {
-    const error = errors[NetGoalField.GOAL];
-    if (error) {
-      modalService.showError(`${error}`);
-    }
-  }, [values, errors]);
 
   return <MdContentEdit name={NetGoalField.GOAL} onEditEnd={handleSubmit} editable={editable} />;
 };

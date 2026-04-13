@@ -68,4 +68,8 @@ export class Api extends Store {
 
     return wrapper;
   }
+
+  resetError() {
+    this.setState({ error: null });
+  }
 }

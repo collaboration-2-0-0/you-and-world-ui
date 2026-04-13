@@ -1,15 +1,16 @@
 import { FC, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { MessagesMap } from '@constants/messages';
 import {
   HttpResponseErrorCode,
   httpResponseErrorEnum,
   isHttpResponseError,
 } from '@client/connection/errors';
-import { app } from '@components/app/app.provider';
 import { modalService } from '@services/modal.service';
 import { useApiError } from '@hooks/useApiError';
 import { useNavigateTo } from '@hooks/useNavigateTo';
 import { NotFound } from '@views/not.found/not.found';
+import { app } from '@components/app/app.provider';
 
 const STATUS_TO_MESSAGES_MAP: Record<HttpResponseErrorCode, string> = {
   400: MessagesMap.BAD_REQUEST,
@@ -29,6 +30,11 @@ export const ErrorCatch: FC = () => {
   const { status, error: appError } = app.useStatus(['status', 'error']);
   const isReady = status === 'READY';
   const navigate = useNavigateTo();
+  const location = useLocation();
+
+  useEffect(() => {
+    app.resetError();
+  }, [location]);
 
   useEffect(() => {
     const error = apiError || (appError?.cause as Error) || appError;

@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { Formik, useFormikContext } from 'formik';
 import { MessagesMap } from '@constants/messages';
 import { app } from '@components/app/app.provider';
@@ -12,21 +12,18 @@ const showSuccess = () => modalService.showMessage(MessagesMap.SUCCESS);
 const showFail = () => modalService.showError('FAIL');
 
 const MemberInfo: FC<MemberInfoFormProps> = ({ member, field }) => {
-  const { submitForm, values, errors } = useFormikContext<MemberInfoFormValues>();
+  const { submitForm, errors } = useFormikContext<MemberInfoFormValues>();
   const { userNet } = app.getState();
   const editable = member.getMember().node_id === userNet?.node_id;
 
   const handleSubmit = () => {
-    submitForm().catch(() => null);
-  };
-
-  useEffect(() => {
     const [error] = [...Object.values<string>(errors)];
     if (error) {
-      modalService.closeModal();
       modalService.showError(`${error}`);
+    } else {
+      submitForm().catch(() => null);
     }
-  }, [values, errors]);
+  };
 
   return <MdContentEdit name={field} onEditEnd={handleSubmit} editable={editable} />;
 };

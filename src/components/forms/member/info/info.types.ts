@@ -10,10 +10,26 @@ export enum MemberInfoField {
 
 export const MemberInfoSchema = yup.object().shape({
   [MemberInfoField.MEMBER_ID]: yup.number(),
-  [MemberInfoField.MEMBER_DESIRE]: yup.string().nullable().min(0).max(1024),
-  [MemberInfoField.MEMBER_GOAL]: yup.string().nullable().min(0).max(1024),
-  [MemberInfoField.MEMBER_ACTIVITY]: yup.string().nullable().min(0).max(1024),
-  [MemberInfoField.MEMBER_ROLE]: yup.string().nullable().min(0).max(255),
+  [MemberInfoField.MEMBER_DESIRE]: yup
+    .string()
+    .nullable()
+    .min(0)
+    .max(1024, 'Можна не більше 1024 символів'),
+  [MemberInfoField.MEMBER_GOAL]: yup
+    .string()
+    .nullable()
+    .min(0)
+    .max(1024, 'Можна не більше 1024 символів'),
+  [MemberInfoField.MEMBER_ACTIVITY]: yup
+    .string()
+    .nullable()
+    .min(0)
+    .max(1024, 'Можна не більше 1024 символів'),
+  [MemberInfoField.MEMBER_ROLE]: yup
+    .string()
+    .nullable()
+    .min(0)
+    .max(255, 'Можна не більше 255 символів'),
 });
 
 export interface MemberInfoFormValues {

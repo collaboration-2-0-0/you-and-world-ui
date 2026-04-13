@@ -156,4 +156,9 @@ export class App extends Store<AppState> {
       return this.userEvents.newEventMessage(messageData);
     }
   }
+
+  resetError() {
+    this.setState({ error: null });
+    this.apiService.resetError();
+  }
 }
