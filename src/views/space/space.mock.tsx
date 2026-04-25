@@ -1,0 +1,60 @@
+import { ISpaceWithDepth } from '@shared/types/db';
+
+export const SAMPLE_DATA: ISpaceWithDepth[] = [
+  {
+    space_rel_id: 2,
+    space_id: 2,
+    parent_space_id: null,
+    name: 's:1',
+    description: 'space: 1',
+    depth: 0,
+  },
+  {
+    space_rel_id: 4,
+    space_id: 4,
+    parent_space_id: 2,
+    name: 's:1.1',
+    description: 'space: 1.1',
+    depth: 1,
+  },
+  {
+    space_rel_id: 6,
+    space_id: 6,
+    parent_space_id: 4,
+    name: 's:1.1.1',
+    description: 'space: 1.1.1',
+    depth: 2,
+  },
+  {
+    space_rel_id: 7,
+    space_id: 7,
+    parent_space_id: 6,
+    name: 's:1.1.1.1',
+    description: 'space: 1.1.1.1',
+    depth: 3,
+  },
+  {
+    space_rel_id: 8,
+    space_id: 8,
+    parent_space_id: 2,
+    name: 's:1.2',
+    description: 'space: 1.2',
+    depth: 1,
+  },
+  {
+    space_rel_id: 9,
+    space_id: 9,
+    parent_space_id: null,
+    name: 's:2',
+    description: 'space: 2',
+    depth: 0,
+  },
+  {
+    space_rel_id: 10,
+    space_id: 10,
+    parent_space_id: 9,
+    name: 's:2.1',
+    description: 'space: 2.1',
+    depth: 1,
+  },
+];

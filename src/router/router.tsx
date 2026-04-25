@@ -5,6 +5,7 @@ import { useEvents } from '@hooks/useEvents';
 import { Main } from '@views/main/main';
 import { About } from '@views/about/about';
 import { Contacts } from '@views/contacts/contacts';
+import { SpacePage } from '@views/space/space';
 import { NotFound } from '@views/not.found/not.found';
 import { AccountRouter } from './routes/account.router';
 import { NetRouter } from './routes/net.router';
@@ -16,6 +17,7 @@ export const Router: FC = () => {
       <Route path={RelativeRoutesMap.ROOT} element={<Main />} />
       <Route path={RelativeRoutesMap.ABOUT} element={<About />} />
       <Route path={RelativeRoutesMap.CONTACTS} element={<Contacts />} />
+      <Route path={RelativeRoutesMap.SPACES} element={<SpacePage />} />
       {AccountRouter}
       {NetRouter}
       <Route path="*" element={<NotFound />} />

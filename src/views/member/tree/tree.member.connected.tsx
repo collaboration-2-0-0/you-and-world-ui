@@ -9,7 +9,7 @@
 
 //   useEffect(() => {
 //     const { userNet: net, member } = app.getState();
-//     const { memberStatus, node_id: nodeId } = member!.getMember();
+//     const { memberStatus, node_id: nodeId } = member!.get();
 //     if (memberStatus === 'CONNECTED') return;
 //     navigate.toNet(net!).treeMember(nodeId);
 //     // eslint-disable-next-line react-hooks/exhaustive-deps

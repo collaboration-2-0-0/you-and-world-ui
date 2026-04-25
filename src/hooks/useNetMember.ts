@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { RoutesMap } from '@constants/router.constants';
-import { useMatchParam } from '@utils/utils';
 import { app } from '@app/app.provider';
+import { useMatchParam } from '@utils/utils';
 
 const path = {
   circle: RoutesMap.NET.NET_ID.CIRCLE.NODE_ID.INDEX,
@@ -10,7 +10,7 @@ const path = {
 
 export const useNetMember = () => {
   const { member, netView } = app.net.useState(['member', 'netView']);
-  const memberData = member?.getMember();
+  const memberData = member?.get();
   const nodeId = useMatchParam('node_id', path[netView!], false) as number;
 
   useEffect(() => {

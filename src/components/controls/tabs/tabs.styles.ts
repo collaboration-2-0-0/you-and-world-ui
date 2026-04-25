@@ -2,6 +2,12 @@ import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles(
   ({ palette, vars }) => ({
+    root: {
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: vars.gap.S,
+    },
     btns: {
       display: 'flex',
       background: palette.first.extraLight,

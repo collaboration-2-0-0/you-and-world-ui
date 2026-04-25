@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { MessagesMap } from '@constants/messages';
-import { modalService } from '@services/modal.service';
+import { RoutesMap } from '@constants/router.constants';
 import { app } from '@app/app.provider';
-import { Button } from '@components/buttons/button/button';
+import { modalService } from '@services/modal.service';
 import { makeTgUrl } from '@utils/format.utils';
 import { handleCopy } from '@utils/utils';
-import { RoutesMap } from '@constants/router.constants';
+import { Button } from '@components/buttons/button/button';
 import { InputSimple } from '@components/controls/input/input.simple';
 import { useStyles } from './invite.styles';
 
@@ -25,7 +25,7 @@ const handleCancel = () => {
 export const MemberInviteCancelForm: FC = () => {
   const { buttons } = useStyles();
   const { member, bot } = app.getState();
-  const memberData = member?.getMember();
+  const memberData = member?.get();
   const inviteUrl = makeTgUrl(pathToInvite, memberData!.token || '', bot);
 
   return (

@@ -2,9 +2,9 @@ import { FC, FormEvent, useCallback } from 'react';
 import { Formik, useFormikContext } from 'formik';
 import { RoutesMap } from '@constants/router.constants';
 import { MessagesMap } from '@constants/messages';
+import { app } from '@app/app.provider';
 import { modalService } from '@services/modal.service';
 import { makeTgUrl } from '@utils/format.utils';
-import { app } from '@app/app.provider';
 import { Input } from '@components/controls/input/input';
 import { Button } from '@components/buttons/button/button';
 import { MemberInviteField, MemberInviteFormValues, MemberInviteSchema } from './invite.schema';
@@ -42,7 +42,7 @@ const MemberInviteCreate: FC = () => {
 
 export const MemberInviteCreateForm = () => {
   const { member, bot } = app.getState();
-  const { member_name: memberName } = member!.getMember();
+  const { member_name: memberName } = member!.get();
 
   return (
     <FormikProvider

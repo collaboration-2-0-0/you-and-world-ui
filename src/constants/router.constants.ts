@@ -4,6 +4,7 @@ export const RelativeRoutesMap = {
   ROOT: '',
   ABOUT: 'about',
   CONTACTS: 'contacts',
+  SPACES: 'spaces',
   ACCOUNT: {
     INDEX: 'account',
     WAIT: 'wait',

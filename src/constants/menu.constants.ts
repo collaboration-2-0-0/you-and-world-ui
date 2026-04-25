@@ -38,6 +38,12 @@ export const MENU_ITEMS: IMenuItem[] = [
     icon: 'account',
     allowForUser: 'NOT_CONFIRMED',
   },
+  {
+    label: 'Довідник Просторів',
+    href: RoutesMap.SPACES,
+    icon: 'dev',
+    allowForUser: 'NOT_LOGGED_IN',
+  },
 ];
 
 export const MENU_NET_ITEMS: IMenuItem[] = [

@@ -1,4 +1,4 @@
-import { FC, SyntheticEvent, memo, PropsWithChildren } from 'react';
+import { FC, MouseEvent, memo, PropsWithChildren } from 'react';
 import clsx from 'clsx';
 import { useStyles } from './icon.styles';
 import { ICONS, ICONS_MAP } from './icons';
@@ -7,7 +7,7 @@ interface IconProps {
   icon: ICONS;
   raw?: boolean;
   className?: string;
-  onClick?: ((e: SyntheticEvent) => void) | (() => void);
+  onClick?: ((e: MouseEvent) => void) | (() => void);
 }
 
 export const Icon: FC<PropsWithChildren<IconProps>> = memo(

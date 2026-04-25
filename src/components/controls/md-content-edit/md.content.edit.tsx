@@ -17,6 +17,7 @@ export const MdContentEdit: FC<MdContentEditProps> = (props) => {
 
   const { name = '', editable, onEditEnd } = props;
   const [formikProps] = useField({ name });
+  const value = formikProps.value || '';
 
   const handleEdit = useCallback(
     () =>
@@ -32,7 +33,7 @@ export const MdContentEdit: FC<MdContentEditProps> = (props) => {
   if (!editable) {
     return (
       <div className={root}>
-        <MdContent content={formikProps.value} className={text} />
+        <MdContent content={value} className={text} />
       </div>
     );
   }
@@ -43,7 +44,7 @@ export const MdContentEdit: FC<MdContentEditProps> = (props) => {
         <Button btnType="secondary" onClick={handleEdit}>
           Зберегти
         </Button>
-        <textarea ref={textRef} className={clsx(text, 'edit')} {...formikProps} />
+        <textarea ref={textRef} className={clsx(text, 'edit')} {...formikProps} value={value} />
       </div>
     );
   }

@@ -8,7 +8,7 @@ import { FormContainer } from '@components/containers/form.container';
 export const TreeMemberInvite: FC = () => {
   const navigate = useNavigateTo();
   const { userNet: net, member } = app.getState();
-  const memberData = member!.getMember();
+  const memberData = member!.get();
   const { node_id: nodeId, memberStatus } = memberData;
 
   useEffect(() => {

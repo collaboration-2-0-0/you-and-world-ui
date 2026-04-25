@@ -42,7 +42,7 @@ export class NetService extends Store<NetState> {
   async onMemberChanged() {
     if (this.state.netView === 'tree') await this.getTree();
     else await this.getCircle();
-    if (this.state.member) this.findMember(this.state.member.getMember().node_id);
+    if (this.state.member) this.findMember(this.state.member.get().node_id);
   }
 
   async onUserNetDataChanged() {

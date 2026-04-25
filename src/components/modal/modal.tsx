@@ -29,8 +29,13 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = (props) => {
   );
 
   const closeEndHandler = useCallback(() => {
-    onClose?.();
-    setState('closed');
+    setState((curState) => {
+      if (curState === 'closing') {
+        queueMicrotask(() => onClose?.());
+        return 'closed';
+      }
+      return curState;
+    });
   }, [onClose]);
 
   const openEndHandler = useCallback(() => {
@@ -39,7 +44,6 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = (props) => {
 
   const onBackdropClickHandler = useCallback(() => {
     setState((curState) => {
-      if (curState !== 'opened') return curState;
       onBackdropClick?.();
       return closeOnBackdropClick ? 'closing' : curState;
     });

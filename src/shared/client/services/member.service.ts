@@ -3,21 +3,25 @@ import { IMember } from '../types';
 import { Store } from '../lib/store/store';
 import { App } from '../app';
 import { NetService } from './net.service';
+import { MemberSpaces } from './member.spaces.service';
 
 interface MemberState {
   info: T.IMemberInfoRes;
 }
 
 export class Member extends Store<MemberState> {
+  memberSpaces: MemberSpaces;
+
   constructor(
     private member: IMember,
     private app: App,
     private net: NetService,
   ) {
     super({ info: null });
+    this.memberSpaces = new MemberSpaces(this.app, this.net, this);
   }
 
-  getMember() {
+  get() {
     return this.member;
   }
 

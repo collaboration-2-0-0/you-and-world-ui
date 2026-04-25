@@ -6,7 +6,7 @@ export const useStyles = createUseStyles(
       height: '100%',
       display: 'flex',
       flexDirection: 'column',
-      gap: vars.gap.L,
+      gap: vars.gap.M,
     },
   }),
   { name: 'Member' },

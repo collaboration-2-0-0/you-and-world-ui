@@ -7,7 +7,7 @@ interface TabsProps {
   tabNames: string[];
 }
 export const Tabs: FC<PropsWithChildren<TabsProps>> = ({ tabNames, children }) => {
-  const { btns, tabs } = useStyles();
+  const { root, btns, tabs } = useStyles();
   const [active, setActive] = useState(0);
 
   if (!Array.isArray(children)) {
@@ -33,9 +33,9 @@ export const Tabs: FC<PropsWithChildren<TabsProps>> = ({ tabNames, children }) =
   ));
 
   return (
-    <>
+    <div className={root}>
       <div className={btns}>{btnsJsx}</div>
       <div className={tabs}>{tabsJsx}</div>
-    </>
+    </div>
   );
 };
